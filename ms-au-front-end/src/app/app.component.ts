@@ -8,7 +8,7 @@ import { AuthService } from "angularx-social-login"
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ms-au-front-end';
+  
   loginStatus:string;
   
   constructor(private socioAuthServ:AuthService) {

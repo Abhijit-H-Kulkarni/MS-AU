@@ -13,6 +13,12 @@
           <img src="../assets/logo.jpg" alt="Logo" style="width:150px;height:30px;">
         </a>
       </li>
+      <li class="nav-item" *ngIf="loginStatus=='true'" id="leftNav">
+        <a class="nav-link" href="/home">Home</a>
+      </li>
+      <li class="nav-item" *ngIf="loginStatus=='true'" id="leftNav">
+        <a class="nav-link" href="/assessment">Assessment</a>
+      </li>
       <li class="nav-item" *ngIf="loginStatus=='false' || loginStatus==null" id="login">
         <a class="nav-link" href="/login">Login</a>
       </li>
@@ -21,6 +27,6 @@
       </li>
     </ul>
   </nav>
-  <h1 class="text">Welcome to MS-AU Management Portal</h1>
+  <h1 class="text" *ngIf="loginStatus=='false' || loginStatus==null">Welcome to MS-AU Management Portal</h1>
 </body>
 <router-outlet></router-outlet>

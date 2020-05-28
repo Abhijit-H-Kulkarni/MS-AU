@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  uname:string;
+  loginStatus:string;
+  constructor() {
+    this.loginStatus = sessionStorage.getItem('loginStatus');
+   }
 
   ngOnInit(): void {
+    this.uname = sessionStorage.getItem('username');
   }
-
 }

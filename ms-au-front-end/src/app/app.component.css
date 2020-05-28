@@ -5,9 +5,13 @@
 }
 
 #login {
-    margin-left:500%;
+    margin-left:490%;
 }
 
 #logout {
-    margin-left:475%;
+    margin-left:235%;
+}
+
+#leftNav {
+    float:left;
 }
