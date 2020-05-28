@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AuthService } from "angularx-social-login"
+
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ms-au-front-end';
+  loginStatus:string;
+  
+  constructor(private socioAuthServ:AuthService) {
+    this.loginStatus = sessionStorage.getItem('loginStatus');
+  }
+  ngOnInit(): void {}
+
+  logOut() {
+    sessionStorage.setItem('loginStatus', 'false');
+    this.socioAuthServ.signOut();
+   }
 }

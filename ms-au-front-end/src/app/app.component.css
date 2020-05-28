@@ -1,3 +1,13 @@
-body {
-    margin: 10px;
+.text {
+    margin-top: 3%;
+    margin-left: 20%;
+    font-size: 50px;
+}
+
+#login {
+    margin-left:500%;
+}
+
+#logout {
+    margin-left:475%;
 }
