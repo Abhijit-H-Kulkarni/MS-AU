@@ -7,8 +7,9 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { AssessmentComponent } from './components/assessment/assessment.component';
 import { FormsModule } from '@angular/forms';
-import { HomeComponent } from './components/home/home.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { HttpClientModule } from '@angular/common/http';
+import { NewPasswordComponent } from './components/new-password/new-password.component';
 
 const GOOGLE_OATH_CLIENT_ID:string = "1075983856302-b14e6le4b4qjmb0use63kk499dihsm27.apps.googleusercontent.com";
 
@@ -24,13 +25,14 @@ let config = new AuthServiceConfig([
     AppComponent,
     LoginComponent,
     AssessmentComponent,
-    HomeComponent,
-    SignupComponent
+    SignupComponent,
+    NewPasswordComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     SocialLoginModule.initialize(config)
   ],
   providers: [],

@@ -12,12 +12,12 @@ export class AppComponent {
   loginStatus:string;
   
   constructor(private socioAuthServ:AuthService) {
-    this.loginStatus = sessionStorage.getItem('loginStatus');
+    this.loginStatus = localStorage.getItem('loginStatus');
   }
   ngOnInit(): void {}
 
   logOut() {
-    sessionStorage.setItem('loginStatus', 'false');
+    localStorage.setItem('loginStatus', 'false');
     this.socioAuthServ.signOut();
    }
 }

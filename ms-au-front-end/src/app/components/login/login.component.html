@@ -1,7 +1,7 @@
 
 <div class="login">
   <h4>Please enter your credentials :</h4>
-  <form action="#" class="was-validated">
+  <form action="#" class="was-validated" autocomplete='off'>
     <div class="form-group">
       <label for="uname">Email ID:</label>
       <input type="email" class="form-control" id="uname" [(ngModel)]="user_info.email" placeholder="Enter Email ID" name="email" required>
@@ -10,7 +10,7 @@
     </div>
     <div class="form-group">
       <label for="pwd">Password:</label>
-      <input type="password" class="form-control" id="pwd" [(ngModel)]="user_info.pwd" placeholder="Enter password" name="pswd" required>
+      <input type="password" class="form-control" id="pwd" [(ngModel)]="user_info.psw" placeholder="Enter password" name="pswd" required>
       <div class="valid-feedback">Valid.</div>
       <div class="invalid-feedback">This field can't be empty.</div>
     </div>
@@ -19,9 +19,5 @@
       <a (click)="signInGoogle('Google')" class="btn btn-danger btn-block" style="color: white;"> Sign in with <b>Google</b></a>
     </div>
     <p style="margin-left: 30%;margin-top: 3%;">Not a User? <a href="/signup">Sign Up</a></p>
-    <!-- This will be changed -->
-    <div *ngIf="user">
-      <img src="{{ user.photoUrl }}" />
-    </div>
   </form> 
 </div>
