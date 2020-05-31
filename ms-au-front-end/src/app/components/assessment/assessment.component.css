@@ -1,0 +1,55 @@
+
+.projects {
+    margin-left: 10%;
+}
+
+.course {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-right: 25%;
+    margin-left: 20%;
+    height: 260px;
+    border-radius: 5px;
+  }
+
+.course:hover {
+    cursor: pointer;
+    background-color: #F8F9FA;
+}
+
+  #update {
+      float:right;
+      margin-top: -23%;
+      width:15%;
+      margin-right: 5%;
+  }
+
+  #delete {
+      float:right;
+      width:15%;
+      margin-top: -13%;
+      margin-right: 5%;
+  }
+
+  .coursetitle {
+    margin-left: 45%;
+  }
+
+  .coursedescr {
+    margin-left: 5%;
+  }
+
+  #addCourse {
+      border-radius: 1000px;
+      width:50px;
+      height:50px;
+      position: fixed;
+      bottom: 5px;
+      right: 10px;
+  }
+
+#searchbox {
+    width: 500px;
+    margin-left: 35%;
+    margin-top: 5%;
+    margin-bottom: 3%;
+}

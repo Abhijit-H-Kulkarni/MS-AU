@@ -34,6 +34,11 @@ export class LoginComponent implements OnInit {
           this.user_info.uname = data["uname"];
           localStorage.setItem('loginStatus', 'true');
           localStorage.setItem('username',this.user_info.uname);
+          if(this.user_info.uname=="admin")
+            localStorage.setItem("isadmin","true");
+          else
+            localStorage.setItem("isadmin","true");
+          localStorage.setItem('welcome','true');
           location.href="/assessment";
         }
       }
@@ -44,9 +49,11 @@ export class LoginComponent implements OnInit {
     platform = GoogleLoginProvider.PROVIDER_ID;
     this.socioAuthServ.signIn(platform).then((response) => {
       this.user = response;
+      if(response.email.match("[a-zA-Z ]*.[a-zA-Z ]*@accoliteindia.com")!=null) {
       localStorage.setItem('loginStatus', 'true');
       localStorage.setItem('username',response.firstName);
       localStorage.setItem('email', response.email);
+      localStorage.setItem('welcome','true');
       // Successfull Login
       if(response.id!=null)
         this.loginService.findUser({email:response.email,uname:response.firstName,psw:""}).subscribe(data => {
@@ -54,8 +61,11 @@ export class LoginComponent implements OnInit {
           if(data==null)
             location.href="/password";
           else
-          location.href="/home";
+          location.href="/assessment";
         });
+      }
+      else
+        alert("Please use your accolite mail to login.")
     });
   }
 

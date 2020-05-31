@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from "angularx-social-login"
+import { AssessmentComponent } from './components/assessment/assessment.component';
 
 
 @Component({
@@ -18,6 +19,8 @@ export class AppComponent {
 
   logOut() {
     localStorage.setItem('loginStatus', 'false');
+    localStorage.setItem('welcome','true');
+    localStorage.setItem('isadmin','false');
     this.socioAuthServ.signOut();
    }
 }

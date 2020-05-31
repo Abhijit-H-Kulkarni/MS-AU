@@ -1,0 +1,34 @@
+.trainers {
+    float: left;
+    margin-top: 3%;
+    margin-left: 3%;
+}
+
+.trainer {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin:5%;
+    height:180px;
+    border-radius: 2%;
+}
+
+#trainerlist {
+    width:600px;
+}
+.addcourse {
+    width:40%;
+    float:right;
+    margin-right: 3%;
+    margin-top: 3%;
+}
+
+#submit {
+    margin-left: 35%;
+    width:30%;
+    margin-bottom: 3%;
+}
+
+#back {
+    margin-left: 35%;
+    margin-top: 5%;
+    width:30%;
+}

@@ -1,0 +1,57 @@
+<div class="trainers">
+    <h5>Here is the list of Trainers :</h5>
+    <div class="overflow-auto " style="max-height: 500px;margin-top: 20px;" id="trainerlist">
+        <table  class="table table-hover table-sm">
+            <tr *ngFor="let trainer of trainers | keyvalue">
+                <div class="trainer">
+                    <br/>
+                    <h5 style="margin-left: 5%;">Trainer ID : {{ trainer.value.tid }}</h5>
+                    <h6 style="margin-left: 5%;">Trainer Name : {{ trainer.value.tname }}</h6>
+                    <h6 style="margin-left: 5%;">Trainer Designation : {{ trainer.value.designation }}</h6>
+                    <h6 style="margin-left: 5%;">Trainer Specialities : {{ trainer.value.specialities }}</h6>
+                    <h6 style="margin-left: 5%;">Trainer Email : {{ trainer.value.email }}</h6>
+                </div>
+            </tr>
+        </table>
+    </div>
+    <a (click)="goBack()" class="btn btn-danger btn-block" style="color: white;" id="back">Go Back</a>
+</div>
+
+
+
+<div class="addcourse">
+    <h5>Please update the course details :</h5>
+    <form action="#" class="was-validated" autocomplete='off'>
+        <div class="form-group">
+            <label for="cname">Course Name:</label>
+            <input type="text" class="form-control" id="cname" [(ngModel)]="course.cname" placeholder="Enter Course Title" name="cname" required>
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Invalid Course Title.</div>
+        </div>
+        <div class="form-group">
+            <label for="cdescription">Course Description:</label>
+            <input type="text" class="form-control" id="cdescription" [(ngModel)]="course.cdescription" placeholder="Enter Course Description" name="cdescription" required>
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Invalid Course Description.</div>
+        </div>
+        <div class="form-group">
+            <label for="skills">Skills:</label>
+            <input type="text" class="form-control" id="skills" [(ngModel)]="course.skills" placeholder="Enter Skills" name="skills" required>
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Invalid Skills.</div>
+        </div>
+        <div class="form-group">
+            <label for="prerequisites">Prerequisites:</label>
+            <input type="text" class="form-control" id="prerequisites" [(ngModel)]="course.prerequisites" placeholder="Enter Prerequisites" name="prerequisites" required>
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Invalid Prerequisites.</div>
+        </div>
+        <div class="form-group">
+            <label for="tid">Trainer ID:</label>
+            <input type="number" class="form-control" id="tid" [(ngModel)]="course.tid" placeholder="Enter Trainer ID" name="tid" required>
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Invalid Trainer ID.</div>
+        </div>
+        <button type="submit" id="submit" class="btn btn-primary" id="submit" (click)="updatecourse($event)">Update</button><br/>
+    </form>
+</div>
