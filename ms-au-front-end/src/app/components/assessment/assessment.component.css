@@ -9,11 +9,12 @@
     margin-left: 20%;
     height: 260px;
     border-radius: 5px;
+    transition: height 1s;
   }
 
 .course:hover {
     cursor: pointer;
-    background-color: #F8F9FA;
+    height: 320px;
 }
 
   #update {
@@ -53,3 +54,25 @@
     margin-top: 5%;
     margin-bottom: 3%;
 }
+
+.view {
+  visibility: visible;
+  opacity: 0;
+  margin-left: 25%;
+  margin-top: 5%;
+}
+
+#view {
+  width:70%;
+}
+
+.course > .view {
+  opacity: 0;
+  transition: opacity 0.5s linear
+}
+
+.course:hover > .view {
+  opacity: 1;
+  transition: opacity 2s linear
+}
+

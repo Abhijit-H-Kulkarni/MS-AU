@@ -76,4 +76,9 @@ export class AssessmentComponent implements OnInit {
       location.reload();
     });
   }
+
+  view(id) {
+    alert(id);
+    location.href = "/view";
+  }
 }
