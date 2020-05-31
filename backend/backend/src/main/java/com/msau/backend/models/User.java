@@ -7,7 +7,11 @@ import javax.persistence.*;
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "users")
 public class User {
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	int uid;
+	
 	@Id
+	@Column(nullable = false, updatable = false)
 	private String email;
 	
 	@Column(nullable = true, updatable = false)
@@ -18,6 +22,14 @@ public class User {
 
 	public String getEmail() {
 		return email;
+	}
+
+	public int getUid() {
+		return uid;
+	}
+
+	public void setUid(int uid) {
+		this.uid = uid;
 	}
 
 	public void setEmail(String email) {
