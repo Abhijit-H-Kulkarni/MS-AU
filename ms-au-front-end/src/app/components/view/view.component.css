@@ -1,0 +1,46 @@
+.heading {
+    text-align: center;
+    margin-top: 3%;
+}
+
+.assignment {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-right: 25%;
+    margin-left: 20%;
+    height: 160px;
+    border-radius: 5px;
+}
+
+#submit {
+    float:right;
+    margin-top: -14%;
+    width:15%;
+    margin-right: 5%;
+}
+
+#withdraw {
+    float:right;
+    margin-top: -5%;
+    width:15%;
+    margin-right: 5%;
+}
+
+#back {
+    width:25%;
+    margin-left: 35%;
+}
+
+#addAssignment {
+    border-radius: 1000px;
+    width:50px;
+    height:50px;
+    position: fixed;
+    bottom: 5px;
+    right: 10px;
+}
+
+#upload {
+    position: absolute;
+    margin-top: -7%;
+    margin-left: 80%;  
+}

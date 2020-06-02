@@ -12,6 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { NewPasswordComponent } from './components/new-password/new-password.component';
 import { AddcourseComponent } from './components/addcourse/addcourse.component';
 import { CourseupdateComponent } from './components/courseupdate/courseupdate.component';
+import { ViewComponent } from './components/view/view.component';
+import { AddassignmentComponent } from './components/addassignment/addassignment.component';
 
 const GOOGLE_OATH_CLIENT_ID:string = "1075983856302-b14e6le4b4qjmb0use63kk499dihsm27.apps.googleusercontent.com";
 
@@ -30,7 +32,9 @@ let config = new AuthServiceConfig([
     SignupComponent,
     NewPasswordComponent,
     AddcourseComponent,
-    CourseupdateComponent
+    CourseupdateComponent,
+    ViewComponent,
+    AddassignmentComponent
   ],
   imports: [
     BrowserModule,

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CourseService } from 'src/app/course.service';
 import { TrainerService } from 'src/app/trainer.service';
+import { ViewService } from 'src/app/view.service'
 import { course } from './course';
+import { SubmissionService } from 'src/app/submission.service';
+import { assignment } from '../view/assignment';
 
 @Component({
   selector: 'app-assessment',
@@ -14,10 +17,17 @@ export class AssessmentComponent implements OnInit {
   uname:string=localStorage.getItem("username");
   courses:any;
   isAdmin:boolean;
+  totalWeight;
+  scoredWeight;
   trainersmap = new Map();
+  coursemap = new Map();
+  scoresmap = new Map();
   tempcourses:any;
   searchstring:string;
-  constructor(private courseService:CourseService, private trainerService:TrainerService) {
+  cid;
+  uid;
+  aid;
+  constructor(private courseService:CourseService, private trainerService:TrainerService, private viewService: ViewService, private submissionService: SubmissionService) {
     if(localStorage.getItem('welcome')=='true' && localStorage.getItem("loginStatus")=='true') {
     alert("Welcome "+ this.uname);
     localStorage.setItem('welcome','false');  
@@ -33,6 +43,7 @@ export class AssessmentComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    this.uid = localStorage.getItem("uid");
     this.courseService.getCourses().subscribe(data => {
       this.courses = data;
       this.tempcourses = data;
@@ -40,6 +51,22 @@ export class AssessmentComponent implements OnInit {
       for(let acourse of courseArray) {
         this.trainerService.findTrainer({tid:acourse["tid"],tname:'',designation:'',specialities:'',email:''}).subscribe(trainersdata => { 
           this.trainersmap.set(acourse["tid"],{"tname":trainersdata["tname"],"designation":trainersdata["designation"]});
+          this.viewService.getSumOfWeights({aid: "",question: "",asstype: "",cid: acourse.cid,weight: ""}).subscribe(data=> {
+            this.totalWeight = data;
+            this.viewService.getAssignmentsById({aid: "",question: "",asstype: "",cid: acourse.cid,weight: ""}).subscribe(data => {
+              let assignmentArray = data as assignment[];
+              this.scoredWeight = 0;
+              for(let assignment of assignmentArray) {
+                this.aid = assignment.aid;
+                this.submissionService.getSubmissionById({uid: this.uid, aid: this.aid}).subscribe(data=>{
+                  if(data!=null) {
+                    this.scoredWeight = this.scoredWeight + parseInt(data["score"]);
+                    this.scoresmap.set(acourse.cid,(this.scoredWeight/this.totalWeight)*100);
+                  }
+                });
+              }      
+            });
+          });
         });
       }
     });
@@ -78,7 +105,7 @@ export class AssessmentComponent implements OnInit {
   }
 
   view(id) {
-    alert(id);
+    localStorage.setItem("cid",id);
     location.href = "/view";
   }
 }

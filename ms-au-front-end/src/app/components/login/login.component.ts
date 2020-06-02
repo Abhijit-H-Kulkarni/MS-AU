@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
           this.user_info.uname = data["uname"];
           localStorage.setItem('loginStatus', 'true');
           localStorage.setItem('username',this.user_info.uname);
+          localStorage.setItem('uid', data["uid"]);
           if(this.user_info.uname=="admin")
             localStorage.setItem("isadmin","true");
           else

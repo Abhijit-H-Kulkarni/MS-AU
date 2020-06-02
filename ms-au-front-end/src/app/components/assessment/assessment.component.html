@@ -19,8 +19,10 @@
                         <h6>Prerequisites : {{ course.value.prerequisites }}</h6>
                         <h6>Faculty : {{ trainersmap.get(course.value.tid)["tname"] }}</h6>
                         <h6>Designation : {{ trainersmap.get(course.value.tid)["designation"] }} </h6>
-                        <h6 *ngIf="course.value.feedback == 0">Rating : NA</h6>
-                        <h6 *ngIf="course.value.feedback != 0">Rating : {{ course.value.feedback }}</h6>
+                        <h6 *ngIf="scoresmap.get(course.value.cid)">Score : {{ scoresmap.get(course.value.cid) }}%</h6>
+                        <h6 *ngIf="!scoresmap.get(course.value.cid)">Score : 0%</h6>
+                        <h6 *ngIf="course.value.score == 0">Rating : NA</h6>
+                        <h6 *ngIf="course.value.score != 0">Rating : {{ course.value.feedback }}</h6>
                     </div>
                     <button *ngIf="isAdmin" class="btn btn-primary" id="update" (click)="updateCourse(course.value.cid)">Update</button>
                     <button *ngIf="isAdmin" class="btn btn-danger btn-block" id="delete" (click)="deleteCourse(course.value.cid)">Delete</button>

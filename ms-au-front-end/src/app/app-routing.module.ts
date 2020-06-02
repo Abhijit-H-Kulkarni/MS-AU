@@ -6,6 +6,8 @@ import { SignupComponent } from './components/signup/signup.component';
 import { NewPasswordComponent } from './components/new-password/new-password.component';
 import { AddcourseComponent } from './components/addcourse/addcourse.component';
 import { CourseupdateComponent } from './components/courseupdate/courseupdate.component';
+import { ViewComponent } from './components/view/view.component';
+import { AddassignmentComponent } from './components/addassignment/addassignment.component';
 
 
 const routes: Routes = [
@@ -14,7 +16,9 @@ const routes: Routes = [
   {path:'signup', component:SignupComponent},
   {path:'password', component:NewPasswordComponent},
   {path:'addcourse', component:AddcourseComponent},
-  {path:'updatecourse', component:CourseupdateComponent}
+  {path:'updatecourse', component:CourseupdateComponent},
+  {path:'view', component:ViewComponent},
+  {path:'addassignment', component:AddassignmentComponent}
 ];
 
 @NgModule({
