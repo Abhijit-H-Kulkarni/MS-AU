@@ -29,4 +29,5 @@ public class UserController {
 	public Optional<User> findUser(@RequestBody User user) {
 		return userRepository.findById(user.getEmail());
 	}
+	
 }
