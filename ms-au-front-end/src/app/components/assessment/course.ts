@@ -7,4 +7,5 @@ export class course {
     tid;
     last_updated;
     feedback;
+    location;
   }

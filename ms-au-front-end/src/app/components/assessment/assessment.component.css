@@ -7,19 +7,19 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin-right: 25%;
     margin-left: 20%;
-    height: 290px;
+    height: 300px;
     border-radius: 5px;
     transition: height 1s;
   }
 
 .course:hover {
     cursor: pointer;
-    height: 340px;
+    height: 360px;
 }
 
   #update {
       float:right;
-      margin-top: -23%;
+      margin-top: -28%;
       width:15%;
       margin-right: 5%;
   }
@@ -27,7 +27,7 @@
   #delete {
       float:right;
       width:15%;
-      margin-top: -13%;
+      margin-top: -18%;
       margin-right: 5%;
   }
 
@@ -40,17 +40,24 @@
   }
 
   #addCourse {
-      border-radius: 1000px;
-      width:50px;
+      width:120px;
       height:50px;
       position: fixed;
       bottom: 5px;
       right: 10px;
   }
 
+  #addTrainer {
+      width:120px;
+      height:50px;
+      position: fixed;
+      bottom: 5px;
+      right: 150px;
+  }
+
 #searchbox {
-    width: 500px;
-    margin-left: 35%;
+    width: 660px;
+    margin-left: 28%;
     margin-top: 5%;
     margin-bottom: 3%;
 }
@@ -76,3 +83,20 @@
   transition: opacity 2s linear
 }
 
+#score {
+  margin-top: 10%;
+  margin-left: -34%;
+  margin-bottom: 1%;
+}
+
+#location {
+  margin-top: 10%;
+  margin-left: 1%;
+  margin-bottom: 1%;
+}
+
+#rating {
+  margin-top: 10%;
+  margin-left: 1%;
+  margin-bottom: 1%;
+}

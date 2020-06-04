@@ -8,6 +8,7 @@ import { AddcourseComponent } from './components/addcourse/addcourse.component';
 import { CourseupdateComponent } from './components/courseupdate/courseupdate.component';
 import { ViewComponent } from './components/view/view.component';
 import { AddassignmentComponent } from './components/addassignment/addassignment.component';
+import { AddtrainerComponent } from './components/addtrainer/addtrainer.component';
 
 
 const routes: Routes = [
@@ -18,7 +19,8 @@ const routes: Routes = [
   {path:'addcourse', component:AddcourseComponent},
   {path:'updatecourse', component:CourseupdateComponent},
   {path:'view', component:ViewComponent},
-  {path:'addassignment', component:AddassignmentComponent}
+  {path:'addassignment', component:AddassignmentComponent},
+  {path:'addtrainer', component:AddtrainerComponent}
 ];
 
 @NgModule({

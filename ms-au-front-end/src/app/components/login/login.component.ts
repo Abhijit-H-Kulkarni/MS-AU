@@ -12,7 +12,7 @@ import { Encryption } from '../encryption/encryption';
 })
 export class LoginComponent implements OnInit {
   user:any;
-  user_info = {email:'', uname:null, psw:''};
+  user_info = {email:'', uname:'', psw:''};
 
   constructor(private socioAuthServ:AuthService, private router: Router, private loginService:LoginService) {
     console.log("in constructor");
@@ -59,6 +59,7 @@ export class LoginComponent implements OnInit {
       if(response.id!=null)
         this.loginService.findUser({email:response.email,uname:response.firstName,psw:""}).subscribe(data => {
           // Perform validation
+          localStorage.setItem('uid', data["uid"]);
           if(data==null)
             location.href="/password";
           else

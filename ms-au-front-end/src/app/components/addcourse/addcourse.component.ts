@@ -9,7 +9,7 @@ import { TrainerService } from 'src/app/trainer.service';
 })
 export class AddcourseComponent implements OnInit {
 
-  course = {cid:'',cname:'',cdescription:'',skills:'',prerequisites:'',tid:'',last_updated:'',score:''};
+  course = {cid:'',cname:'',cdescription:'',skills:'',prerequisites:'',location:'',tid:'',last_updated:'',rating:''};
   trainers:any;
 
   constructor(private courseService: CourseService, private trainerService: TrainerService) { }

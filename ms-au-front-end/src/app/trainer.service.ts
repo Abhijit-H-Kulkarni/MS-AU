@@ -17,4 +17,8 @@ export class TrainerService {
   findTrainer(trainer: object): Observable<object> {
     return this.http.post(this.baseUrl+"/findtrainer", trainer);
   }
+
+  addTrainer(trainer: object): Observable<object> {
+    return this.http.post(this.baseUrl+"addtrainer",trainer);
+  }
 }

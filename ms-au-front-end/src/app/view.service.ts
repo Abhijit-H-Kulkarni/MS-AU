@@ -10,23 +10,23 @@ export class ViewService {
   baseUrl = 'http://localhost:8080/assignment/';
   constructor(private http:HttpClient) { }
 
-  getAssignments(): Observable<object> {
+  getAssignments() {
     return this.http.get(this.baseUrl+"/getassignments")
   }
 
-  addAssignment(assignment): Observable<object> {
+  addAssignment(assignment) {
     return this.http.post(this.baseUrl+'/addassignment',assignment, { observe: 'response' });
   }
 
-  getAssignmentsById(assignment): Observable<object> {
+  getAssignmentsById(assignment) {
     return this.http.post(this.baseUrl+'/getassignmentsbyid',assignment);
   }
 
-  getSumOfWeights(assignment): Observable<object> {
+  getSumOfWeights(assignment) {
     return this.http.post(this.baseUrl+'/getsumofweights',assignment);
   }
 
-  getById(assignment): Observable<object> {
+  getById(assignment) {
     return this.http.post(this.baseUrl+'/findbyid',assignment);
   }
 }

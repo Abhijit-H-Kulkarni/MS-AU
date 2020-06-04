@@ -14,6 +14,7 @@ import { AddcourseComponent } from './components/addcourse/addcourse.component';
 import { CourseupdateComponent } from './components/courseupdate/courseupdate.component';
 import { ViewComponent } from './components/view/view.component';
 import { AddassignmentComponent } from './components/addassignment/addassignment.component';
+import { AddtrainerComponent } from './components/addtrainer/addtrainer.component';
 
 const GOOGLE_OATH_CLIENT_ID:string = "1075983856302-b14e6le4b4qjmb0use63kk499dihsm27.apps.googleusercontent.com";
 
@@ -34,7 +35,8 @@ let config = new AuthServiceConfig([
     AddcourseComponent,
     CourseupdateComponent,
     ViewComponent,
-    AddassignmentComponent
+    AddassignmentComponent,
+    AddtrainerComponent
   ],
   imports: [
     BrowserModule,

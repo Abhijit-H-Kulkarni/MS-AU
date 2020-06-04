@@ -5,6 +5,9 @@ import { ViewService } from 'src/app/view.service'
 import { course } from './course';
 import { SubmissionService } from 'src/app/submission.service';
 import { assignment } from '../view/assignment';
+import { LocationService } from 'src/app/location.service';
+
+
 
 @Component({
   selector: 'app-assessment',
@@ -18,16 +21,17 @@ export class AssessmentComponent implements OnInit {
   courses:any;
   isAdmin:boolean;
   totalWeight;
-  scoredWeight;
+  scoredWeight=0;
   trainersmap = new Map();
-  coursemap = new Map();
   scoresmap = new Map();
   tempcourses:any;
   searchstring:string;
+  isRatingTrend = false;
   cid;
   uid;
   aid;
-  constructor(private courseService:CourseService, private trainerService:TrainerService, private viewService: ViewService, private submissionService: SubmissionService) {
+  Course:course = new course();
+  constructor(private courseService:CourseService, private trainerService:TrainerService, private viewService: ViewService, private submissionService: SubmissionService, private locationService: LocationService) {
     if(localStorage.getItem('welcome')=='true' && localStorage.getItem("loginStatus")=='true') {
     alert("Welcome "+ this.uname);
     localStorage.setItem('welcome','false');  
@@ -42,6 +46,41 @@ export class AssessmentComponent implements OnInit {
       this.isAdmin = false;
    }
 
+   async getSubmissionById(uid, aid) {
+    this.submissionService.getSubmissionById({uid: uid, aid: aid}).subscribe(data=>{
+      if(data!=null) {
+        this.scoredWeight =  this.scoredWeight + data["score"];
+      }
+    });
+   }
+
+   async getAssignmentsById(acourse) {
+    this.viewService.getAssignmentsById({aid: "",question: "",asstype: "",cid: acourse.cid,weight: ""}).subscribe(async data => {
+      let assignmentArray = data as assignment[];
+      this.scoredWeight = 0;
+      for(let assignment of assignmentArray) {
+        this.getSubmissionById(this.uid, assignment.aid);
+        await this.getSubmissionById;
+      }
+    });
+  }
+
+  async getSumOfWeights(courseArray) {
+    for(let acourse of courseArray) {
+      this.viewService.getSumOfWeights({aid: "",question: "",asstype: "",cid: acourse.cid,weight: ""}).subscribe(async data=> {
+        this.totalWeight = data;
+        if(this.totalWeight!=0) {
+          await this.getAssignmentsById(acourse);
+          console.log(this.scoredWeight,acourse.cid);
+          this.scoresmap.set(acourse.cid,(this.scoredWeight/this.totalWeight)*100);
+        }
+        else {
+          this.scoresmap.set(acourse.cid,0);
+        }
+      });
+    }
+  }
+
   ngOnInit(): void {
     this.uid = localStorage.getItem("uid");
     this.courseService.getCourses().subscribe(data => {
@@ -51,22 +90,7 @@ export class AssessmentComponent implements OnInit {
       for(let acourse of courseArray) {
         this.trainerService.findTrainer({tid:acourse["tid"],tname:'',designation:'',specialities:'',email:''}).subscribe(trainersdata => { 
           this.trainersmap.set(acourse["tid"],{"tname":trainersdata["tname"],"designation":trainersdata["designation"]});
-          this.viewService.getSumOfWeights({aid: "",question: "",asstype: "",cid: acourse.cid,weight: ""}).subscribe(data=> {
-            this.totalWeight = data;
-            this.viewService.getAssignmentsById({aid: "",question: "",asstype: "",cid: acourse.cid,weight: ""}).subscribe(data => {
-              let assignmentArray = data as assignment[];
-              this.scoredWeight = 0;
-              for(let assignment of assignmentArray) {
-                this.aid = assignment.aid;
-                this.submissionService.getSubmissionById({uid: this.uid, aid: this.aid}).subscribe(data=>{
-                  if(data!=null) {
-                    this.scoredWeight = this.scoredWeight + parseInt(data["score"]);
-                    this.scoresmap.set(acourse.cid,(this.scoredWeight/this.totalWeight)*100);
-                  }
-                });
-              }      
-            });
-          });
+          this.getSumOfWeights(courseArray);
         });
       }
     });
@@ -75,6 +99,13 @@ export class AssessmentComponent implements OnInit {
   search() {
     if(this.searchstring!="") {
     const temp = {};
+    this.Course.location = this.searchstring;
+    this.courseService.checkLocation(this.Course).subscribe(data=>{
+      if(data==1) {
+        this.locationService.incrementCount(this.Course.location).subscribe(data=>{});
+      }
+    });
+
     const reg = new RegExp(this.searchstring.toLowerCase());
     for (const key in this.courses) {
       if (reg.test(this.courses[key].cname.toLowerCase())) {
@@ -89,6 +120,10 @@ export class AssessmentComponent implements OnInit {
 
   addCourse() {
     location.href="/addcourse";
+  }
+
+  addTrainer() {
+    location.href="/addtrainer";
   }
 
   updateCourse(id) {
@@ -107,5 +142,42 @@ export class AssessmentComponent implements OnInit {
   view(id) {
     localStorage.setItem("cid",id);
     location.href = "/view";
+  }
+
+  ratingTrend() {
+    if(this.isRatingTrend == false) {
+      this.isRatingTrend = true;
+    }
+    else {
+      this.isRatingTrend = false;
+      this.ngOnInit();
+    }
+    this.courseService.ratingTrend().subscribe(data => {
+      this.courses = data;
+      this.tempcourses = data;
+    });
+}
+
+// Work on this...
+  scoreTrend() {
+    const mapSort1 = new Map([...this.scoresmap.entries()].sort((a, b) => b[1] - a[1]));
+    mapSort1.forEach((value:any,key:any) => {
+      this.tempcourses[key] = this.courses[key];
+    });
+  }
+
+  locationTrend() {
+    this.locationService.getLocations().subscribe(data=> {
+      let locationArray = data as string[];
+      this.tempcourses = [];
+      for(let location of locationArray) {
+          this.courseService.getCoursesByLocation(location).subscribe(data=>{
+            let courseArray = data as course[];
+            for(let course of courseArray) {
+              this.tempcourses.push(course);
+            }
+          });
+      }
+    });
   }
 }

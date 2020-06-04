@@ -23,6 +23,6 @@ export class SubmissionService {
   }
 
   getSumOfWeights(submissionId): Observable<object> {
-    return this.http.post(this.baseUrl+"getscore", submissionId);
+    return this.http.post(this.baseUrl+"getscore", submissionId, { observe: 'response' });
   }
 }

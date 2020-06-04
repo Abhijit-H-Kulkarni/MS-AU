@@ -1,11 +1,14 @@
 <div>
     <form class="form-inline mr-auto">
       <input class="form-control" [(ngModel)]="searchstring" type="text" id="searchbox" name="searchbox" placeholder="Search" (change)="search()" autocomplete="off">
+      <button type="button" id="score" class="btn btn-dark" (click)="scoreTrend()">Score</button>
+      <button type="button" id="location" class="btn btn-dark" (click)="locationTrend()">Location</button>
+      <button type="button" id="rating" class="btn btn-dark" (click)="ratingTrend()">Rating</button>
     </form>
 </div>
 
 <div class="projects" >
-    <h2 style="margin-left: 30%;">Here is the list of courses :</h2>
+    <h2 style="margin-left: 32%;">Here is the list of courses :</h2>
     <br/>
     <div class="courses">
         <table  class="table table-hover table-sm">
@@ -17,12 +20,13 @@
                         <h6>Description : {{ course.value.cdescription }}</h6>
                         <h6>Skills : {{ course.value.skills }}</h6>
                         <h6>Prerequisites : {{ course.value.prerequisites }}</h6>
+                        <h6>Location : {{ course.value.location }} </h6>
                         <h6>Faculty : {{ trainersmap.get(course.value.tid)["tname"] }}</h6>
                         <h6>Designation : {{ trainersmap.get(course.value.tid)["designation"] }} </h6>
                         <h6 *ngIf="scoresmap.get(course.value.cid)">Score : {{ scoresmap.get(course.value.cid) }}%</h6>
                         <h6 *ngIf="!scoresmap.get(course.value.cid)">Score : 0%</h6>
-                        <h6 *ngIf="course.value.score == 0">Rating : NA</h6>
-                        <h6 *ngIf="course.value.score != 0">Rating : {{ course.value.feedback }}</h6>
+                        <h6 *ngIf="course.value.rating == 0">Rating : NA</h6>
+                        <h6 *ngIf="course.value.rating != 0">Rating : {{ course.value.rating }}</h6>
                     </div>
                     <button *ngIf="isAdmin" class="btn btn-primary" id="update" (click)="updateCourse(course.value.cid)">Update</button>
                     <button *ngIf="isAdmin" class="btn btn-danger btn-block" id="delete" (click)="deleteCourse(course.value.cid)">Delete</button>
@@ -37,5 +41,6 @@
 </div>
 
 <div>
-    <button *ngIf="isAdmin" type="button" id="addCourse" title="Add course" class="btn btn-success bmd-btn-fab" (click)="addCourse()">+</button>
+    <button *ngIf="isAdmin" type="button" id="addTrainer" class="btn btn-success" (click)="addTrainer()">Add Trainer</button>
+    <button *ngIf="isAdmin" type="button" id="addCourse" title="Add course" class="btn btn-success" (click)="addCourse()">Add Course</button>
 </div>

@@ -1,6 +1,6 @@
 <div class="trainers">
     <h5>Here is the list of Trainers :</h5>
-    <div class="overflow-auto " style="max-height: 500px;margin-top: 20px;" id="trainerlist">
+    <div class="overflow-auto " style="max-height: 610px;margin-top: 20px;" id="trainerlist">
         <table  class="table table-hover table-sm">
             <tr *ngFor="let trainer of trainers | keyvalue">
                 <div class="trainer">
@@ -45,6 +45,12 @@
             <input type="text" class="form-control" id="prerequisites" [(ngModel)]="course.prerequisites" placeholder="Enter Prerequisites" name="prerequisites" required>
             <div class="valid-feedback">Valid.</div>
             <div class="invalid-feedback">Invalid Prerequisites.</div>
+        </div>
+        <div class="form-group">
+            <label for="prerequisites">Location:</label>
+            <input type="text" class="form-control" id="location" [(ngModel)]="course.location" placeholder="Enter Location" name="location" required>
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Invalid Location.</div>
         </div>
         <div class="form-group">
             <label for="tid">Trainer ID:</label>

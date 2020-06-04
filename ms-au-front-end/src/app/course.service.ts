@@ -14,6 +14,10 @@ export class CourseService {
     return this.http.post(this.baseUrl+"/getcoursebyid", course);
   }
 
+  getCoursesByLocation(location:string): Observable<object> {
+    return this.http.post(this.baseUrl+"getcoursebylocation",location);
+  } 
+
   getCourses(): Observable<object> {
     return this.http.get(this.baseUrl+"getcourses");
   }
@@ -28,5 +32,17 @@ export class CourseService {
 
   deleteCourse(course: object): Observable<object> {
     return this.http.post(this.baseUrl+"/deletecourse", course);
+  }
+
+  ratingTrend(): Observable<object> {
+    return this.http.get(this.baseUrl+"/ratingtrend")
+  }
+
+  updateRating(course:object):Observable<object> {
+    return this.http.post(this.baseUrl+"updateRating",course)
+  }
+
+  checkLocation(course:object) {
+    return this.http.post(this.baseUrl+"checklocation", course);
   }
 }

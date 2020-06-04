@@ -3,6 +3,7 @@
 </div>
 <br/>
 <div class="assignments">
+    <h1 *ngIf="assignments.length==0" style="margin-left: 30%;">Hurray! No Assignments yet.</h1>
     <table *ngIf="assignments" class="table table-hover table-sm">
         <tr *ngFor="let assignment of assignments | keyvalue">
             <div class="assignment">
@@ -24,6 +25,22 @@
     </table>
     <br/>
     <button class="btn btn-danger btn-block" id="back" (click)="goBack()" >Go Back</button>
+    <div class="stars" *ngIf="ratedList.length==0">
+        <h5 style="margin-left:20%;">Rate the course :</h5>
+        <form action="">
+            <input class="star star-5" id="star-5" type="radio" name="star" (click)="setRating(5)"/>
+            <label class="star star-5" for="star-5"></label>
+            <input class="star star-4" id="star-4" type="radio" name="star" (click)="setRating(4)"/>
+            <label class="star star-4" for="star-4"></label>
+            <input class="star star-3" id="star-3" type="radio" name="star" (click)="setRating(3)"/>
+            <label class="star star-3" for="star-3"></label>
+            <input class="star star-2" id="star-2" type="radio" name="star" (click)="setRating(2)"/>
+            <label class="star star-2" for="star-2"></label>
+            <input class="star star-1" id="star-1" type="radio" name="star" (click)="setRating(1)"/>
+            <label class="star star-1" for="star-1"></label>
+            <button style="margin-left:35%;" class="btn btn-primary" id="rate" (click)="addRating()">Submit</button>
+        </form>
+    </div>
     <br/>
 </div>
 <button *ngIf="isAdmin" type="button" id="addAssignment" title="Add Assignment" (click)="addAssignment()" class="btn btn-success bmd-btn-fab">+</button>

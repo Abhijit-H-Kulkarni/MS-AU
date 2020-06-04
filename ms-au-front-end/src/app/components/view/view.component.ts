@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ViewService } from 'src/app/view.service';
 import { SubmissionService } from 'src/app/submission.service';
 import { assignment } from './assignment';
+import { RatingService } from 'src/app/rating.service';
+import { CourseService } from 'src/app/course.service';
 
 @Component({
   selector: 'app-view',
@@ -12,14 +14,22 @@ export class ViewComponent implements OnInit {
 
   cid;
   uid;
+  ratedList;
   assignments;
+  rating;
+  avgRating;
   submissionId;
   statusmap = new Map();
   fileToUpload: File = null;
   isAdmin:boolean;
-  constructor(private viewService: ViewService, private submissionService: SubmissionService) { 
+  constructor(private viewService: ViewService, private submissionService: SubmissionService, private ratingService: RatingService, private courseService: CourseService) { 
     this.cid = localStorage.getItem("cid");
     this.uid = localStorage.getItem("uid");
+    this.ratingService.getAllRating({id:{uid:this.uid,cid:this.cid},rating:""}).subscribe(data=>{
+      this.ratedList = data;
+      console.log(data);
+      
+    });
     viewService.getAssignments().subscribe(data => {
       let assignmentArray = data as assignment[];
       for(let ass of assignmentArray) {
@@ -77,5 +87,17 @@ export class ViewComponent implements OnInit {
       alert("Successfully withdrawn.")
       location.reload();
     });
+  }
+
+  setRating(value) {
+    this.rating = value;
+  }
+  addRating() {
+    this.ratingService.addRating({id:{uid:this.uid,cid:this.cid},rating:this.rating}).subscribe(data => {
+      this.avgRating = data;
+      this.courseService.updateRating({cid:this.cid,cname:"",cdescription:"",skills:"",prerequisites:"",location:"",tid:"",last_updated:"", rating:this.avgRating}).subscribe(data=>{
+        location.reload();
+      });
+    })
   }
 }

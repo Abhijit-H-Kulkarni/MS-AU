@@ -9,7 +9,7 @@ import { TrainerService } from 'src/app/trainer.service';
 })
 export class CourseupdateComponent implements OnInit {
 
-  course = {cid:'',cname:'',cdescription:'',skills:'',prerequisites:'',tid:'',last_updated:'',score:''};
+  course = {cid:'',cname:'',cdescription:'',skills:'',prerequisites:'',location:'',tid:'',last_updated:'',score:''};
   trainers:any;
   
   constructor(private courseService: CourseService, private trainerService: TrainerService) { }
@@ -33,6 +33,7 @@ export class CourseupdateComponent implements OnInit {
       this.course.cdescription = data["cdescription"];
       this.course.skills = data["skills"];
       this.course.prerequisites = data["prerequisites"];
+      this.course.location = data["location"];
       this.course.tid = data["tid"];
     });
   }
