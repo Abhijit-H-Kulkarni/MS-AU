@@ -25,6 +25,17 @@ public class Course {
 	@Column(nullable = false)
 	private String prerequisites;
 	
+	@Column(nullable = false)
+	private String location;
+	
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
 	public int getTid() {
 		return tid;
 	}
@@ -42,7 +53,7 @@ public class Course {
     private Date last_updated;
 	
 	@Column(nullable = false)
-	private float score;
+	private float rating;
 
 	public int getCid() {
 		return cid;
@@ -92,12 +103,12 @@ public class Course {
 		this.last_updated = last_updated;
 	}
 
-	public float getScore() {
-		return score;
+	public float getRating() {
+		return rating;
 	}
 
-	public void setScore(float score) {
-		this.score = score;
+	public void setRating(float rating) {
+		this.rating = rating;
 	}
 	
 

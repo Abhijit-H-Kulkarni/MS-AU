@@ -42,7 +42,10 @@ public class AssignmentController {
 
 	@PostMapping("/getsumofweights")
 	public int getSumOfWeights(@RequestBody Assignment assignment) {
-		return assignmentRepository.findSumOfWeights(assignment.getCid());
+		if(!assignmentRepository.findAllByCid(assignment.getCid()).isEmpty()) {
+			return assignmentRepository.findSumOfWeights(assignment.getCid());
+		}
+		return 0;
 	}
 	
 }

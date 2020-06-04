@@ -15,7 +15,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Table(name = "assignment")
 public class Assignment {
 
-	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int aid;
 	
@@ -25,6 +24,8 @@ public class Assignment {
 	@Column(nullable = false)
 	String asstype;
 	
+
+	@Id
 	@Column(nullable = false)
 	int cid;
 	

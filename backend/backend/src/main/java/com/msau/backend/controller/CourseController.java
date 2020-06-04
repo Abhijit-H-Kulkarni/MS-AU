@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -44,4 +45,28 @@ public class CourseController {
 	public Optional<Course> getCourseById(@RequestBody Course course) {
 		return courseRepository.findById(course.getCid());
 	}
+	
+	@PostMapping("/getcoursebylocation")
+	public List<Course> getCourseByLocation(@RequestBody String location) {
+		return courseRepository.checkLocation(location);
+	}
+	
+	@GetMapping("/ratingtrend")
+	public List<Course> getSortedRating() {
+		return courseRepository.findAll(Sort.by(Sort.Direction.DESC, "rating"));
+	}
+	
+	@PostMapping("/updateRating")
+	public void updateRating(@RequestBody Course course) {
+		courseRepository.setRating(course.getCid(), course.getRating());
+	}
+	
+	@PostMapping("checklocation")
+	public int checkLocation(@RequestBody Course course) {
+		List<Course> result = courseRepository.checkLocation(course.getLocation());
+		if(result.size()==0)
+			return 0;
+		return 1;
+	}
+	
 }

@@ -31,4 +31,8 @@ public class TrainerController {
 		return trainerRepository.findById(trainer.getTid());
 	}
 	
+	@PostMapping("/addtrainer")
+	public void addTrainer(@RequestBody Trainer trainer) {
+		trainerRepository.save(trainer);
+	}
 }
