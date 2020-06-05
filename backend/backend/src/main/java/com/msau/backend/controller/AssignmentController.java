@@ -26,8 +26,8 @@ public class AssignmentController {
 	}
 	
 	@PostMapping("/addassignment")
-	public void addAssignment(@RequestBody Assignment assignment) {
-		assignmentRepository.save(assignment);
+	public Assignment addAssignment(@RequestBody Assignment assignment) {
+		return assignmentRepository.save(assignment);
 	}
 	
 	@PostMapping("/findbyid")

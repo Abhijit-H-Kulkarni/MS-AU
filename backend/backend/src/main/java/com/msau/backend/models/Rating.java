@@ -13,6 +13,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Table(name = "rating")
 public class Rating {
 	@Id
+	private
 	RatingId id;
 	
 	@Column(nullable = false)

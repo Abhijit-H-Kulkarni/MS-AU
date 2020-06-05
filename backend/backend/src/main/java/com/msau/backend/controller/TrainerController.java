@@ -22,7 +22,6 @@ public class TrainerController {
 	
 	@GetMapping("/getalltrainers")
 	public List<Trainer> getAllTrainers() {
-		System.out.println("I am in");
 		return trainerRepository.findAll();
 	}
 
