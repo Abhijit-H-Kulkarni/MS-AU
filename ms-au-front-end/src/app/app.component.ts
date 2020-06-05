@@ -11,7 +11,7 @@ import { AssessmentComponent } from './components/assessment/assessment.componen
 export class AppComponent {
   
   loginStatus:string;
-  
+  title="MS-AU Management Portal";
   constructor(private socioAuthServ:AuthService) {
     this.loginStatus = localStorage.getItem('loginStatus');
   }
