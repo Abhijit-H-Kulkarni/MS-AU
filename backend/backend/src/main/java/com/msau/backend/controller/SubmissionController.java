@@ -3,7 +3,9 @@ package com.msau.backend.controller;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Optional;
+import java.util.zip.DataFormatException;
 import java.util.zip.Deflater;
+import java.util.zip.Inflater;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -41,17 +43,18 @@ public class SubmissionController {
 		submissionRepository.deleteById(id);
 	}
 	
-	@PostMapping("/getscore")
-	public int getsumofscores(@RequestBody SubmissionId id) {
-		return submissionRepository.getscore(id);
+	@PostMapping("/getsumscore")
+	public Optional<Integer> getsumofscores(@RequestBody SubmissionId id) {
+		return submissionRepository.getsumscore(id.getUid(),id.getCid());
 	}
 	
 	@PostMapping("/upload")
-	public void upload(@RequestParam("imageFile") MultipartFile file, @RequestParam("uid") int uid, @RequestParam("assid") int aid, @RequestParam("score") String score) {
+	public void upload(@RequestParam("imageFile") MultipartFile file, @RequestParam("uid") int uid, @RequestParam("assid") int aid, @RequestParam("cid") int cid, @RequestParam("score") String score) {
 		Submission submission = new Submission();
 		SubmissionId id = new SubmissionId();
 		id.setAid(aid);
 		id.setUid(uid);
+		id.setCid(cid);
 		submission.setId(id);
 		submission.setScore(Integer.parseInt(score));
 		try {
@@ -79,6 +82,25 @@ public class SubmissionController {
         System.out.println("Compressed Image Byte Size - " + outputStream.toByteArray().length);
         return outputStream.toByteArray();
     }
+	
+	public static byte[] decompressBytes(byte[] data) {
+        Inflater inflater = new Inflater();
+        inflater.setInput(data);
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream(data.length);
+        byte[] buffer = new byte[1024];
+        try {
+            while (!inflater.finished()) {
+                int count = inflater.inflate(buffer);
+                outputStream.write(buffer, 0, count);
+            }
+            outputStream.close();
+        } catch (IOException ioe) {
+        } catch (DataFormatException e) {
+        }
+        return outputStream.toByteArray();
+    }
+
+
 
 	
 }

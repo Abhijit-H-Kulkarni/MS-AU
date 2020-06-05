@@ -1,5 +1,7 @@
 package com.msau.backend.repository;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -8,6 +10,6 @@ import com.msau.backend.models.SubmissionId;
 
 
 public interface SubmissionRepository extends JpaRepository<Submission, SubmissionId> {
-	@Query(value="select s.score from Submission s where s.id=?1",nativeQuery = true)
-	public int getscore(SubmissionId id);
+	@Query("select sum(s.score) from Submission s where s.id.uid=?1 and s.id.cid=?2")
+	public Optional<Integer> getsumscore(int uid, int cid);
 }

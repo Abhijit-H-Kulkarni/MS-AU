@@ -8,6 +8,13 @@ import javax.persistence.Embeddable;
 public class SubmissionId implements Serializable {
 	int aid;
 	int uid;
+	int cid;
+	public int getCid() {
+		return cid;
+	}
+	public void setCid(int cid) {
+		this.cid = cid;
+	}
 	public int getAid() {
 		return aid;
 	}
