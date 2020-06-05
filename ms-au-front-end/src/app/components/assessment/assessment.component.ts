@@ -6,6 +6,7 @@ import { course } from './course';
 import { SubmissionService } from 'src/app/submission.service';
 import { assignment } from '../view/assignment';
 import { LocationService } from 'src/app/location.service';
+import {forkJoin} from 'rxjs';
 
 
 
@@ -46,39 +47,25 @@ export class AssessmentComponent implements OnInit {
       this.isAdmin = false;
    }
 
-   async getSubmissionById(uid, aid) {
-    this.submissionService.getSubmissionById({uid: uid, aid: aid}).subscribe(data=>{
-      if(data!=null) {
-        this.scoredWeight =  this.scoredWeight + data["score"];
-      }
-    });
-   }
-
-   async getAssignmentsById(acourse) {
-    this.viewService.getAssignmentsById({aid: "",question: "",asstype: "",cid: acourse.cid,weight: ""}).subscribe(async data => {
-      let assignmentArray = data as assignment[];
-      this.scoredWeight = 0;
-      for(let assignment of assignmentArray) {
-        this.getSubmissionById(this.uid, assignment.aid);
-        await this.getSubmissionById;
-      }
-    });
-  }
 
   async getSumOfWeights(courseArray) {
+    let observables = new Array();
+    let observables2 = new Array();
     for(let acourse of courseArray) {
-      this.viewService.getSumOfWeights({aid: "",question: "",asstype: "",cid: acourse.cid,weight: ""}).subscribe(async data=> {
-        this.totalWeight = data;
-        if(this.totalWeight!=0) {
-          await this.getAssignmentsById(acourse);
-          console.log(this.scoredWeight,acourse.cid);
-          this.scoresmap.set(acourse.cid,(this.scoredWeight/this.totalWeight)*100);
-        }
-        else {
-          this.scoresmap.set(acourse.cid,0);
-        }
-      });
+      observables.push(this.viewService.getSumOfWeights({aid: "",question: "",asstype: "",cid: acourse.cid,weight: ""}));
+      observables2.push(this.submissionService.getSumOfWeights({aid:"",uid:this.uid,cid:acourse.cid}));
     }
+    forkJoin(observables).subscribe(data => {
+      this.totalWeight = data;
+      forkJoin(observables2).subscribe(data => {
+        let i = 0;
+        data.forEach((weight) => {
+          this.scoresmap.set(courseArray[i]["cid"],(weight["body"]/this.totalWeight[i])*100);
+          i++;
+        })
+      });
+    });
+   console.log(this.scoresmap);
   }
 
   ngOnInit(): void {
@@ -90,9 +77,9 @@ export class AssessmentComponent implements OnInit {
       for(let acourse of courseArray) {
         this.trainerService.findTrainer({tid:acourse["tid"],tname:'',designation:'',specialities:'',email:''}).subscribe(trainersdata => { 
           this.trainersmap.set(acourse["tid"],{"tname":trainersdata["tname"],"designation":trainersdata["designation"]});
-          this.getSumOfWeights(courseArray);
         });
       }
+      this.getSumOfWeights(courseArray);
     });
   }
 
@@ -108,7 +95,7 @@ export class AssessmentComponent implements OnInit {
 
     const reg = new RegExp(this.searchstring.toLowerCase());
     for (const key in this.courses) {
-      if (reg.test(this.courses[key].cname.toLowerCase())) {
+      if (reg.test(this.courses[key].cname.toLowerCase()) || reg.test(this.courses[key].location.toLowerCase())) {
         temp[key] = this.courses[key];
       }
     }
@@ -158,12 +145,16 @@ export class AssessmentComponent implements OnInit {
     });
 }
 
-// Work on this...
   scoreTrend() {
     const mapSort1 = new Map([...this.scoresmap.entries()].sort((a, b) => b[1] - a[1]));
+    this.tempcourses = [];
     mapSort1.forEach((value:any,key:any) => {
-      this.tempcourses[key] = this.courses[key];
-    });
+     for(let item of this.courses) {
+        if(item["cid"]==key) {
+          this.tempcourses.push(item);
+          console.log(this.tempcourses);
+        }
+    }});
   }
 
   locationTrend() {

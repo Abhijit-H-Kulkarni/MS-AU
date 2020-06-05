@@ -27,13 +27,11 @@ export class ViewComponent implements OnInit {
     this.uid = localStorage.getItem("uid");
     this.ratingService.getAllRating({id:{uid:this.uid,cid:this.cid},rating:""}).subscribe(data=>{
       this.ratedList = data;
-      console.log(data);
-      
     });
     viewService.getAssignments().subscribe(data => {
       let assignmentArray = data as assignment[];
       for(let ass of assignmentArray) {
-        submissionService.getSubmissionById({aid:ass["aid"],uid:this.uid}).subscribe(data=> { 
+        submissionService.getSubmissionById({aid:ass["aid"],uid:this.uid,cid:this.cid}).subscribe(data=> { 
           if(data!=null)
             this.statusmap.set(data["id"]["aid"],true);
           else
@@ -66,7 +64,9 @@ export class ViewComponent implements OnInit {
     const uploadData = new FormData();
     uploadData.append('imageFile', this.fileToUpload, this.fileToUpload.name);
     uploadData.append('uid', this.uid);
+    uploadData.append('cid', this.cid);
     uploadData.append('assid', assid);
+    console.log(assid+" "+this.cid);
     this.viewService.getById({aid:assid,question:"",asstype:"",cid:this.cid,weight:""}).subscribe(data=>{
       uploadData.append('score', data["weight"]);
       this.submissionService.upload(uploadData).subscribe(response => {
@@ -82,7 +82,7 @@ export class ViewComponent implements OnInit {
   }
 
   dropAssignment(assid) {
-    this.submissionId = {aid:assid, uid: this.uid};
+    this.submissionId = {aid:assid, uid: this.uid, cid: this.cid};
     this.submissionService.dropSubmission(this.submissionId).subscribe(data => {
       alert("Successfully withdrawn.")
       location.reload();

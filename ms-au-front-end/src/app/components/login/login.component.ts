@@ -59,11 +59,12 @@ export class LoginComponent implements OnInit {
       if(response.id!=null)
         this.loginService.findUser({email:response.email,uname:response.firstName,psw:""}).subscribe(data => {
           // Perform validation
-          localStorage.setItem('uid', data["uid"]);
           if(data==null)
             location.href="/password";
-          else
-          location.href="/assessment";
+          else {
+            localStorage.setItem('uid', data["uid"]);
+            location.href="/assessment";
+          }
         });
       }
       else
