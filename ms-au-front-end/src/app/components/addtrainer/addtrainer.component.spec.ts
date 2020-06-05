@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddtrainerComponent } from './addtrainer.component';
+import { TrainerService } from 'src/app/trainer.service';
+import { HttpClient, HttpHandler } from '@angular/common/http';
 
 describe('AddtrainerComponent', () => {
   let component: AddtrainerComponent;
@@ -8,7 +10,8 @@ describe('AddtrainerComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddtrainerComponent ]
+      declarations: [ AddtrainerComponent ],
+      providers : [TrainerService, HttpClient, HttpHandler]
     })
     .compileComponents();
   }));

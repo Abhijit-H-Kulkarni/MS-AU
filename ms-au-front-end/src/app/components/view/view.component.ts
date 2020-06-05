@@ -36,13 +36,17 @@ export class ViewComponent implements OnInit {
             this.statusmap.set(data["id"]["aid"],true);
           else
             this.statusmap.set(ass["aid"],false);
-        });
+        }, (error) => {
+          console.log(error);
+          });
       }
     });
 
     this.viewService.getAssignmentsById({aid:"",question:"",asstype:"",cid:this.cid,weight:""}).subscribe( data => {
       this.assignments = data;
-    });
+    }, (error) => {
+      console.log(error);
+      });
 
     if(localStorage.getItem("isadmin")=="true")
       this.isAdmin = true;
@@ -73,8 +77,12 @@ export class ViewComponent implements OnInit {
         if(response["status"] === 200)
           alert("Successfully uploaded.")
         location.reload();
+      }, (error) => {
+        console.log(error);
+        });
+    }, (error) => {
+      console.log(error);
       });
-    })
   }
 
   addAssignment() {
@@ -86,7 +94,9 @@ export class ViewComponent implements OnInit {
     this.submissionService.dropSubmission(this.submissionId).subscribe(data => {
       alert("Successfully withdrawn.")
       location.reload();
-    });
+    }, (error) => {
+      console.log(error);
+      });
   }
 
   setRating(value) {
@@ -97,7 +107,11 @@ export class ViewComponent implements OnInit {
       this.avgRating = data;
       this.courseService.updateRating({cid:this.cid,cname:"",cdescription:"",skills:"",prerequisites:"",location:"",tid:"",last_updated:"", rating:this.avgRating}).subscribe(data=>{
         location.reload();
+      }, (error) => {
+        console.log(error);
+        });
+    }, (error) => {
+      console.log(error);
       });
-    })
   }
 }

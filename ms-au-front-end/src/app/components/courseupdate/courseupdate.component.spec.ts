@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CourseupdateComponent } from './courseupdate.component';
+import { CourseService } from 'src/app/course.service';
+import { TrainerService } from 'src/app/trainer.service';
+import { HttpClient, HttpHandler } from '@angular/common/http';
 
 describe('CourseupdateComponent', () => {
   let component: CourseupdateComponent;
@@ -8,7 +11,8 @@ describe('CourseupdateComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CourseupdateComponent ]
+      declarations: [ CourseupdateComponent ],
+      providers: [CourseService, TrainerService, HttpClient, HttpHandler]
     })
     .compileComponents();
   }));
