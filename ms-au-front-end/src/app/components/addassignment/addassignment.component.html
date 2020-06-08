@@ -13,7 +13,7 @@
             </tr>
         </table>
     </div>
-    <a (click)="goBack()" class="btn btn-danger btn-block" style="color: white;" id="back">Go Back</a>
+    <a (click)="goBack()" class="btn btn-danger btn-block" style="color: white;" id="back"><i id="backicon" class="fas fa-backward"></i> Go Back</a>
 </div>
 
 
@@ -45,6 +45,6 @@
             <div class="valid-feedback">Valid.</div>
             <div class="invalid-feedback">Invalid Course Id.</div>
         </div>
-        <button type="submit" id="submit" class="btn btn-primary" id="submit" (click)="addassignment($event)">Add Assignment</button><br/>
+        <button type="submit" id="submit" class="btn btn-primary" id="submit" (click)="addassignment($event)">Add Assignment <i class="fas fa-plus-circle"></i></button><br/>
     </form>
 </div>

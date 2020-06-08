@@ -14,10 +14,9 @@
       <div class="valid-feedback">Valid.</div>
       <div class="invalid-feedback">This field can't be empty.</div>
     </div>
-    <button type="submit" class="btn btn-primary" id="submit" (click)="login($event)">Login</button><br/>
+    <button type="submit" class="btn btn-primary" id="submit" (click)="login($event)">Login <i class="fas fa-sign-in-alt"></i></button><br/>
     <div class="google">
-      <a (click)="signInGoogle('Google')" class="btn btn-danger btn-block" style="color: white;"> Sign in with <b>Google</b></a>
+      <a (click)="signInGoogle('Google')" class="btn btn-danger btn-block" style="color: white;"> Sign in with <b>Google</b> <i id="googleicon" class="fab fa-google-plus-g"></i></a>
     </div>
-    <p style="margin-left: 30%;margin-top: 3%;">Not a User? <a href="/signup">Sign Up</a></p>
   </form> 
 </div>

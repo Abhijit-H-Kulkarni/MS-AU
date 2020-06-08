@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Inject  } from '@angular/core';
 import { AuthService } from "angularx-social-login"
-import { AssessmentComponent } from './components/assessment/assessment.component';
+import { DOCUMENT } from '@angular/common';
+
 
 
 @Component({
@@ -10,10 +11,16 @@ import { AssessmentComponent } from './components/assessment/assessment.componen
 })
 export class AppComponent {
   
+  logoDisplayStatus:Boolean;
   loginStatus:string;
   title="MS-AU Management Portal";
-  constructor(private socioAuthServ:AuthService) {
+  constructor(private socioAuthServ:AuthService, @Inject(DOCUMENT) private document: Document) {
     this.loginStatus = localStorage.getItem('loginStatus');
+    let url = this.document.location.href;
+    if(url=="http://localhost:4200/")
+      this.logoDisplayStatus = true;
+    else
+      this.logoDisplayStatus = false;
   }
   ngOnInit(): void {}
 
@@ -23,4 +30,6 @@ export class AppComponent {
     localStorage.setItem('isadmin','false');
     this.socioAuthServ.signOut();
    }
+
+
 }

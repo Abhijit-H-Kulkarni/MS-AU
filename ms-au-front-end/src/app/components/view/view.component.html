@@ -9,22 +9,20 @@
             <div class="assignment">
                 <br/>
                 <div id="assDetails">
-                    <h6 style="margin-left: 3%;">Question : {{ assignment.value.question }}</h6>
+                    <h6 style="margin-left: 3%;max-width:600px;word-wrap:break-word;">Question : {{ assignment.value.question }}</h6>
                     <h6 style="margin-left: 3%;">Type : {{ assignment.value.asstype }}</h6>
                     <h6 style="margin-left: 3%;">Weightage : {{ assignment.value.weight }}</h6>
                     <h6 *ngIf="statusmap.get(assignment.value.aid)==true" style="margin-left: 3%;">Status : Submitted</h6>
                     <h6 *ngIf="statusmap.get(assignment.value.aid)==false" style="margin-left: 3%;">Status : Pending</h6>
                 </div>
-                <button class="btn btn-primary" id="submit" (click)="uploadAssignment(assignment.value.aid)">Uplaod</button>
-                <button class="btn btn-danger btn-block" id="withdraw" (click)="dropAssignment(assignment.value.aid)">Withdraw</button>
+                <button class="btn btn-primary" id="submit" (click)="uploadAssignment(assignment.value.aid)">Uplaod <i class="fas fa-upload"></i></button>
+                <button class="btn btn-danger btn-block" id="withdraw" (click)="dropAssignment(assignment.value.aid)">Withdraw <i class="fas fa-times"></i></button>
             </div>
             <input type="file" id="upload" (change)="handleFileInput($event.target.files)">
             <br/> 
             <br/>
         </tr> 
     </table>
-    <br/>
-    <button class="btn btn-danger btn-block" id="back" (click)="goBack()" >Go Back</button>
     <div *ngIf="ratedList">
         <div class="stars" *ngIf="ratedList.length==0">
             <h5 style="margin-left:20%;">Rate the course :</h5>
@@ -39,10 +37,10 @@
                 <label class="star star-2" for="star-2"></label>
                 <input class="star star-1" id="star-1" type="radio" name="star" (click)="setRating(1)"/>
                 <label class="star star-1" for="star-1"></label>
-                <button style="margin-left:35%;" class="btn btn-primary" id="rate" (click)="addRating()">Submit</button>
+                <button style="margin-left:15%;" class="btn btn-primary" id="rate" (click)="addRating()">Submit <i class="fas fa-paper-plane"></i></button>
             </form>
         </div>
     </div>
+    <button class="btn btn-danger btn-block" id="back" (click)="goBack()" >Go Back</button>
     <br/>
 </div>
-<button *ngIf="isAdmin" type="button" id="addAssignment" title="Add Assignment" (click)="addAssignment()" class="btn btn-success bmd-btn-fab">+</button>

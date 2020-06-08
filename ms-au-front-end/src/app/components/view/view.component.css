@@ -7,7 +7,7 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin-right: 25%;
     margin-left: 20%;
-    height: 160px;
+    min-height: 160px;
     border-radius: 5px;
 }
 
@@ -42,7 +42,7 @@
 #upload {
     position: absolute;
     margin-top: -7%;
-    margin-left: 80%;  
+    margin-left: 77%;  
 }
 
 div.stars {
@@ -82,6 +82,9 @@ div.stars {
 
   .stars {
       margin-left: 38%;
-      margin-top: 3%;
       margin-bottom: 3%;
+  }
+
+  #rate {
+    width:70%;
   }

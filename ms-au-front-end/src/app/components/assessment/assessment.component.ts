@@ -105,14 +105,6 @@ export class AssessmentComponent implements OnInit {
     this.ngOnInit();
 }
 
-  addCourse() {
-    location.href="/addcourse";
-  }
-
-  addTrainer() {
-    location.href="/addtrainer";
-  }
-
   updateCourse(id) {
     localStorage.setItem("updatecid",id);
     location.href="updatecourse";
@@ -124,6 +116,18 @@ export class AssessmentComponent implements OnInit {
       alert("Course deleted successfully.");
       location.reload();
     });
+  }
+
+  addTrainer() {
+    location.href="/addtrainer";
+  }
+
+  addCourse() {
+    location.href="/addcourse";
+  }
+
+  addAssignment() {
+    location.href="/addassignment";
   }
 
   view(id) {

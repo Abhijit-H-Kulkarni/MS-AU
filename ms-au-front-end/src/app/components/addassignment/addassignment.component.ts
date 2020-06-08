@@ -26,6 +26,6 @@ export class AddassignmentComponent implements OnInit {
   }
 
   goBack() {
-    location.href="/view";
+    location.href="/assessment";
   }
 }

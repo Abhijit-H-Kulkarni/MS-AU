@@ -85,10 +85,6 @@ export class ViewComponent implements OnInit {
       });
   }
 
-  addAssignment() {
-    location.href = "/addassignment";
-  }
-
   dropAssignment(assid) {
     this.submissionId = {aid:assid, uid: this.uid, cid: this.cid};
     this.submissionService.dropSubmission(this.submissionId).subscribe(data => {

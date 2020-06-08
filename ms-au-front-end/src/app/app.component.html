@@ -4,7 +4,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 </head>
 <body>
   <nav class="navbar navbar-expand-sm bg-light navbar-light">
@@ -23,5 +24,9 @@
     </ul>
   </nav>
   <h1 class="text" *ngIf="loginStatus=='false' || loginStatus==null">Welcome to MS-AU Management Portal</h1>
+  <div class="images" *ngIf="logoDisplayStatus" style="margin-top: 10%;">
+    <img src="../assets/logo.jpg" style="height:30%;width:40%;float:left;margin-left: 8%;margin-top:2%;"/>
+    <img src="../assets/accolite.jpg" style="height:30%;width:40%;float:right;margin-right: 8%;"/>
+  </div>
 </body>
 <router-outlet></router-outlet>
