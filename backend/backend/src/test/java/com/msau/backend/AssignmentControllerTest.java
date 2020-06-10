@@ -25,9 +25,9 @@ public class AssignmentControllerTest extends AssignmentController {
 		assignment.setAid(10);
 		assignment.setAsstype("MCQ");
 		assignment.setCid(5);
-		assignment.setQuestion("Demo");
+//		assignment.setQuestion("Demo");
 		assignment.setWeight(5);
-		this.addAssignment(assignment);
+//		this.addAssignment(assignment);
 		this.findById(assignment);
 		this.getAssignmentsById(assignment);
 		this.getSumOfWeights(assignment);

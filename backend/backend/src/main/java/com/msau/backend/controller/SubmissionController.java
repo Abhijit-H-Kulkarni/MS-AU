@@ -49,7 +49,7 @@ public class SubmissionController {
 	}
 	
 	@PostMapping("/upload")
-	public void upload(@RequestParam("imageFile") MultipartFile file, @RequestParam("uid") int uid, @RequestParam("assid") int aid, @RequestParam("cid") int cid, @RequestParam("score") String score) {
+	public void Upload(@RequestParam("imageFile") MultipartFile file, @RequestParam("uid") int uid, @RequestParam("assid") int aid, @RequestParam("cid") int cid, @RequestParam("score") String score) {
 		Submission submission = new Submission();
 		SubmissionId id = new SubmissionId();
 		id.setAid(aid);
@@ -63,6 +63,18 @@ public class SubmissionController {
 			System.out.println(e.getStackTrace());
 		}
 		submissionRepository.save(submission);
+	}
+	
+	@PostMapping("/download")
+	public Submission Download(@RequestParam("uid") int uid, @RequestParam("assid") int aid, @RequestParam("cid") int cid) {
+		SubmissionId id = new SubmissionId();
+		id.setAid(aid);
+		id.setUid(uid);
+		id.setCid(cid);
+		final Optional<Submission> retrievedImage = submissionRepository.findById(id);
+		Submission submission = new Submission();
+		submission.setSolution(decompressBytes((retrievedImage.get().getSolution())));
+		return submission;
 	}
 	
 	public static byte[] compressBytes(byte[] data) {

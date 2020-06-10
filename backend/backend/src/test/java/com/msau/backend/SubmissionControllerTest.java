@@ -31,6 +31,6 @@ public class SubmissionControllerTest extends SubmissionController{
 		this.getsumofscores(submissionId);
 		byte[] content = null;
 		MultipartFile file = new MockMultipartFile("demo.txt","demo.txt", "text/plain", content);;
-		this.upload(file, 4, 4, 5, "5");
+		this.Upload(file, 4, 4, 5, "5");
 	}
 }

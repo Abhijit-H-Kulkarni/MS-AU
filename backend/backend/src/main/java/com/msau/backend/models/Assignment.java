@@ -20,7 +20,7 @@ public class Assignment {
 	int aid;
 	
 	@Column(nullable = false)
-	String question;
+	byte[] question;
 
 	@Column(nullable = false)
 	String asstype;
@@ -39,11 +39,11 @@ public class Assignment {
 		this.aid = aid;
 	}
 
-	public String getQuestion() {
+	public byte[] getQuestion() {
 		return question;
 	}
 
-	public void setQuestion(String question) {
+	public void setQuestion(byte[] question) {
 		this.question = question;
 	}
 

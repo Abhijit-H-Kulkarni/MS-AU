@@ -6,8 +6,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.*;
+import java.util.zip.DataFormatException;
+import java.util.zip.Deflater;
+import java.util.zip.Inflater;
+
 import com.msau.backend.models.Assignment;
 
 
@@ -26,7 +35,17 @@ public class AssignmentController {
 	}
 	
 	@PostMapping("/addassignment")
-	public Assignment addAssignment(@RequestBody Assignment assignment) {
+	public Assignment addAssignment(@RequestParam("imageFile") MultipartFile file, @RequestParam("assType") String asstype, @RequestParam("weight") int weight,@RequestParam("cid") int cid) {
+		Assignment assignment = new Assignment();
+		assignment.setAsstype(asstype);
+		assignment.setCid(cid);
+		assignment.setWeight(weight);
+		try {
+			assignment.setQuestion(file.getBytes());
+		}
+		catch (IOException e) {
+			System.out.println(e.getStackTrace());
+		}
 		return assignmentRepository.save(assignment);
 	}
 	
@@ -47,5 +66,4 @@ public class AssignmentController {
 		}
 		return 0;
 	}
-	
 }

@@ -32,7 +32,7 @@ public class AssignmentTest {
 	public void getAssignmentByIdTest() {
 		System.out.println("AssignmentTest 1");
 		Assignment assignment = new Assignment();
-		assignment.setQuestion("Describe C.");
+//		assignment.setQuestion("Describe C.");
 		assertEquals(assignment.getQuestion(), assignmentRepository.findById(4).get().getQuestion());
 	}
 	
@@ -42,7 +42,7 @@ public class AssignmentTest {
 		Assignment assignment = new Assignment();
 		assignment.setAsstype("Descriptive");
 		assignment.setCid(5);
-		assignment.setQuestion("What is differnece between C and C++.");
+//		assignment.setQuestion("What is differnece between C and C++.");
 		assignment.setWeight(5);
 		assertEquals(assignmentRepository.save(assignment), assignment);
 		assignmentRepository.deleteById(assignment.getAid());
@@ -52,7 +52,7 @@ public class AssignmentTest {
 	public void findAssignmentByCid() {
 		System.out.println("AssignmentTest 3");
 		Assignment assignment = new Assignment();
-		assignment.setQuestion("Write a program to reverse a list in Python.");
+//		assignment.setQuestion("Write a program to reverse a list in Python.");
 		assertEquals(assignment.getQuestion(), assignmentRepository.findAllByCid(7).get(0).getQuestion());
 	}
 	
