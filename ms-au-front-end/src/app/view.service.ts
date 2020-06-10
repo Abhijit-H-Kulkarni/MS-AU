@@ -11,22 +11,22 @@ export class ViewService {
   constructor(private http:HttpClient) { }
 
   getAssignments(): Observable<object> {
-    return this.http.get(this.baseUrl+"/getassignments")
+    return this.http.get(this.baseUrl+"getassignments")
   }
 
   addAssignment(assignment): Observable<object> {
-    return this.http.post(this.baseUrl+'/addassignment',assignment, { observe: 'response' });
+    return this.http.post(this.baseUrl+'addassignment',assignment, { observe: 'response' });
   }
 
   getAssignmentsById(assignment): Observable<object> {
-    return this.http.post(this.baseUrl+'/getassignmentsbyid',assignment);
+    return this.http.post(this.baseUrl+'getassignmentsbyid',assignment);
   }
 
   getSumOfWeights(assignment): Observable<object> {
-    return this.http.post(this.baseUrl+'/getsumofweights',assignment);
+    return this.http.post(this.baseUrl+'getsumofweights',assignment);
   }
 
   getById(assignment): Observable<object> {
-    return this.http.post(this.baseUrl+'/findbyid',assignment);
+    return this.http.post(this.baseUrl+'findbyid',assignment);
   }
 }

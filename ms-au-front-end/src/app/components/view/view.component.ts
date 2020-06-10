@@ -4,6 +4,7 @@ import { SubmissionService } from 'src/app/submission.service';
 import { assignment } from './assignment';
 import { RatingService } from 'src/app/rating.service';
 import { CourseService } from 'src/app/course.service';
+import * as fileSaver from 'file-saver';
 
 @Component({
   selector: 'app-view',
@@ -19,6 +20,9 @@ export class ViewComponent implements OnInit {
   rating;
   avgRating;
   submissionId;
+  retrievedImage: any;
+  base64Data: any;
+  retrieveResponse: any;
   statusmap = new Map();
   fileToUpload: File = null;
   isAdmin:boolean;
@@ -42,7 +46,7 @@ export class ViewComponent implements OnInit {
       }
     });
 
-    this.viewService.getAssignmentsById({aid:"",question:"",asstype:"",cid:this.cid,weight:""}).subscribe( data => {
+    this.viewService.getAssignmentsById({aid:"",question:null,asstype:"",cid:this.cid,weight:""}).subscribe( data => {
       this.assignments = data;
     }, (error) => {
       console.log(error);
@@ -70,19 +74,16 @@ export class ViewComponent implements OnInit {
     uploadData.append('uid', this.uid);
     uploadData.append('cid', this.cid);
     uploadData.append('assid', assid);
-    console.log(assid+" "+this.cid);
-    this.viewService.getById({aid:assid,question:"",asstype:"",cid:this.cid,weight:""}).subscribe(data=>{
+    this.viewService.getById({aid:assid,question:null,asstype:"",cid:this.cid,weight:""}).subscribe(data=>{
       uploadData.append('score', data["weight"]);
       this.submissionService.upload(uploadData).subscribe(response => {
         if(response["status"] === 200)
           alert("Successfully uploaded.")
         location.reload();
       }, (error) => {
-        console.log(error);
+          alert("Could not upload the file. Please check file type and file size and try again.");
         });
-    }, (error) => {
-      console.log(error);
-      });
+    });
   }
 
   dropAssignment(assid) {
@@ -91,8 +92,34 @@ export class ViewComponent implements OnInit {
       alert("Successfully withdrawn.")
       location.reload();
     }, (error) => {
-      console.log(error);
-      });
+      alert("Could not withdraw. Please submit your response.");
+    });
+  }
+
+  downloadAssignment(assid) {
+    const downloadData = new FormData();
+    downloadData.append('uid', this.uid);
+    downloadData.append('cid', this.cid);
+    downloadData.append('assid', assid);
+    this.submissionService.download(downloadData).subscribe(response => {
+          this.retrieveResponse = response;
+          this.base64Data = this.retrieveResponse.body.solution;
+          this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
+          alert("Scroll down to view the assignment.");
+    }, (err) => {
+      alert("You haven't submitted the assignment yet. Please submit the assignment first/");
+    });
+  }
+
+  downloadQuestion(assid) {
+    this.viewService.getById({aid:assid,question:null,asstype:"",cid:this.cid,weight:""}).subscribe(data => {
+      console.log(data["question"]);
+      let blob:any = new Blob([data["question"]]);
+      const url= window.URL.createObjectURL(blob);
+      window.open(url);
+      fileSaver.saveAs(blob, 'question '+assid+' .txt');
+      window.close();
+    });
   }
 
   setRating(value) {

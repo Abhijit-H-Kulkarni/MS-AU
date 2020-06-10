@@ -1,5 +1,6 @@
 <div class="heading">
     <h2>Here are the list of assignments : </h2>
+    <h6>(Only image uploads are supported.)</h6>
 </div>
 <br/>
 <div class="assignments" *ngIf="assignments">
@@ -9,12 +10,13 @@
             <div class="assignment">
                 <br/>
                 <div id="assDetails">
-                    <h6 style="margin-left: 3%;max-width:600px;word-wrap:break-word;">Question : {{ assignment.value.question }}</h6>
+                    <h6 style="margin-left: 3%;max-width:600px;word-wrap:break-word;">Question : <a href="http://localhost:4200/view" (click)="downloadQuestion(assignment.value.aid)">Click to download the Question.</a></h6>
                     <h6 style="margin-left: 3%;">Type : {{ assignment.value.asstype }}</h6>
                     <h6 style="margin-left: 3%;">Weightage : {{ assignment.value.weight }}</h6>
                     <h6 *ngIf="statusmap.get(assignment.value.aid)==true" style="margin-left: 3%;">Status : Submitted</h6>
                     <h6 *ngIf="statusmap.get(assignment.value.aid)==false" style="margin-left: 3%;">Status : Pending</h6>
                 </div>
+                <button class="btn btn-success" id="download" (click)="downloadAssignment(assignment.value.aid)">View <i class="fas fa-eye"></i></button>
                 <button class="btn btn-primary" id="submit" (click)="uploadAssignment(assignment.value.aid)">Uplaod <i class="fas fa-upload"></i></button>
                 <button class="btn btn-danger btn-block" id="withdraw" (click)="dropAssignment(assignment.value.aid)">Withdraw <i class="fas fa-times"></i></button>
             </div>
@@ -41,6 +43,12 @@
             </form>
         </div>
     </div>
+    <div class="image">
+            <div *ngIf="retrievedImage">
+                <img [src]="retrievedImage" style="width:1000px;height:500px;">  
+            </div>
+    </div> 
+    <br/> 
     <button class="btn btn-danger btn-block" id="back" (click)="goBack()" >Go Back</button>
     <br/>
 </div>

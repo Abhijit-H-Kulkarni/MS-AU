@@ -22,6 +22,10 @@ export class SubmissionService {
     return this.http.post(this.baseUrl+"upload", submission, { observe: 'response' });
   }
 
+  download(submission): Observable<object> {
+    return this.http.post(this.baseUrl+"download", submission, { observe: 'response' });
+  }
+
   getSumOfWeights(submissionId): Observable<object> {
     return this.http.post(this.baseUrl+"getsumscore", submissionId, { observe: 'response' });
   }

@@ -9,7 +9,7 @@ import { CourseService } from 'src/app/course.service';
 })
 export class AddassignmentComponent implements OnInit {
 
-  assignment = {question:'',asstype:'',weight:'',cid:''}
+  assignment = {question:null,asstype:'',weight:'',cid:''}
   constructor(private viewService: ViewService, private courseService: CourseService) { }
   courses:any;
   ngOnInit(): void {
@@ -20,12 +20,22 @@ export class AddassignmentComponent implements OnInit {
 
   addassignment(event:Event) {
     event.preventDefault();
-    this.viewService.addAssignment(this.assignment).subscribe(data => {
-      alert("Course added successfully.")
+    const uploadData = new FormData();
+    uploadData.append('imageFile', this.assignment.question, this.assignment.question.name);
+    uploadData.append('assType', this.assignment.asstype);
+    uploadData.append('weight', this.assignment.weight);
+    uploadData.append('cid', this.assignment.cid);
+    this.viewService.addAssignment(uploadData).subscribe(data => {
+      alert("Assignment added successfully.");
+      location.reload();
     });
   }
 
   goBack() {
     location.href="/assessment";
+  }
+
+  handleFileInput(files: FileList) {
+    this.assignment.question = files.item(0);
   }
 }

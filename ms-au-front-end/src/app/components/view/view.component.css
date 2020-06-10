@@ -7,8 +7,22 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin-right: 25%;
     margin-left: 20%;
-    min-height: 160px;
+    height: 150px;
     border-radius: 5px;
+    transition: height 1s;
+}
+
+.assignment:hover {
+  height: 190px;
+}
+
+#download {
+  opacity: 0;
+  transition: opacity 1s linear;
+}
+
+.assignment:hover > #download {
+  opacity: 1;
 }
 
 #submit {
@@ -20,14 +34,14 @@
 
 #withdraw {
     float:right;
-    margin-top: -5%;
+    margin-top: -7%;
     width:15%;
     margin-right: 5%;
 }
 
 #back {
     width:25%;
-    margin-left: 35%;
+    margin-left: 36%;
 }
 
 #addAssignment {
@@ -87,4 +101,14 @@ div.stars {
 
   #rate {
     width:70%;
+  }
+
+  .image {
+    margin-left: 13%;
+  }
+
+  #download {
+    width:20%;
+    margin-left: 40%;
+    margin-bottom: 2%;
   }
