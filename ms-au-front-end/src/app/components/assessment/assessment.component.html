@@ -1,6 +1,7 @@
 <div>
     <form class="form-inline mr-auto">
       <input class="form-control" [(ngModel)]="searchstring" type="text" id="searchbox" name="searchbox" placeholder="Search" (change)="search()" autocomplete="off">
+      <button type="button" id="course" class="btn btn-dark" (click)="courseTrend()">Course <i class="fas fa-book"></i></button>
       <button type="button" id="score" class="btn btn-dark" (click)="scoreTrend()">Score <i class="fas fa-poll"></i></button>
       <button type="button" id="location" class="btn btn-dark" (click)="locationTrend()">Location <i class="fas fa-map-marker-alt"></i></button>
       <button type="button" id="rating" class="btn btn-dark" (click)="ratingTrend()">Rating <i class="fas fa-star"></i></button>
@@ -16,7 +17,7 @@
                 <div class="course">
                     <br/>
                     <h3 class="coursetitle">{{ course.value.cname }}</h3>
-                    <div class="coursedescr">
+                    <div class="coursedescr" title="Last Updated : {{ course.value.last_updated }}">
                         <h6>Description : {{ course.value.cdescription }}</h6>
                         <h6>Skills : {{ course.value.skills }}</h6>
                         <h6>Prerequisites : {{ course.value.prerequisites }}</h6>

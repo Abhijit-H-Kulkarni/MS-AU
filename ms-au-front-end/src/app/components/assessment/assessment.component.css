@@ -149,9 +149,16 @@
   transition: opacity 2s linear
 }
 
+#course {
+  margin-top: 10%;
+  margin-left: -45%;
+  margin-bottom: 1%;
+  width:10%;
+}
+
 #score {
   margin-top: 10%;
-  margin-left: -40%;
+  margin-left: 1%;
   margin-bottom: 1%;
   width:10%;
 }

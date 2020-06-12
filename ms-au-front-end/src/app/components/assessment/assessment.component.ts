@@ -7,6 +7,8 @@ import { SubmissionService } from 'src/app/submission.service';
 import { assignment } from '../view/assignment';
 import { LocationService } from 'src/app/location.service';
 import {forkJoin} from 'rxjs';
+import { CoursecountService } from 'src/app/coursecount.service';
+import { coursecount } from './coursecount';
 
 
 
@@ -20,6 +22,7 @@ export class AssessmentComponent implements OnInit {
 
   uname:string=localStorage.getItem("username");
   courses:any;
+  course = {cid:'',cname:'',cdescription:'',skills:'',prerequisites:'',location:'',tid:'',last_updated:'',score:''};
   isAdmin:boolean;
   totalWeight;
   scoredWeight=0;
@@ -32,7 +35,7 @@ export class AssessmentComponent implements OnInit {
   uid;
   aid;
   Course:course = new course();
-  constructor(private courseService:CourseService, private trainerService:TrainerService, private viewService: ViewService, private submissionService: SubmissionService, private locationService: LocationService) {
+  constructor(private courseService:CourseService, private trainerService:TrainerService, private viewService: ViewService, private submissionService: SubmissionService, private locationService: LocationService, private courseCount: CoursecountService) {
     if(localStorage.getItem('welcome')=='true' && localStorage.getItem("loginStatus")=='true') {
     alert("Welcome "+ this.uname);
     localStorage.setItem('welcome','false');  
@@ -90,6 +93,12 @@ export class AssessmentComponent implements OnInit {
     this.courseService.checkLocation(this.Course).subscribe(data=>{
       if(data==1) {
         this.locationService.incrementCount(this.Course.location).subscribe(data=>{});
+      }
+    });
+    console.log(this.searchstring);
+    this.courseService.getCourseByName(this.searchstring).subscribe(data=> {
+      if(data!=null) {
+        this.courseCount.increment({id:"",cid:data["cid"],count:""}).subscribe(data=>{});
       }
     });
 
@@ -156,7 +165,6 @@ export class AssessmentComponent implements OnInit {
      for(let item of this.courses) {
         if(item["cid"]==key) {
           this.tempcourses.push(item);
-          console.log(this.tempcourses);
         }
     }});
   }
@@ -174,5 +182,19 @@ export class AssessmentComponent implements OnInit {
           });
       }
     });
+  }
+
+  courseTrend() {
+    this.courseCount.getAllCourses().subscribe(data => {
+      this.tempcourses = [];
+      let couseCountArray = data as coursecount[];
+      for(let courseCount of couseCountArray) {
+        this.Course.cid = courseCount.cid;
+        this.courseService.getCourseById(this.Course).subscribe(data=> {
+          let courseEle = data as course;
+          this.tempcourses.push(courseEle);
+        })
+      }
+    })
   }
 }

@@ -45,4 +45,8 @@ export class CourseService {
   checkLocation(course:object) {
     return this.http.post(this.baseUrl+"checklocation", course);
   }
+
+  getCourseByName(name) {
+    return this.http.post(this.baseUrl+"getcoursebyname",name);
+  }
 }

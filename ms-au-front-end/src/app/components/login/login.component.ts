@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
     this.user_info.psw = encryptionObj.encrypt(this.user_info.psw);
     this.loginService.findUser(this.user_info).subscribe(data => {
       if(data==null)
-        alert("You aren't a registered user. Click signup to register for free.")
+        alert("You aren't a registered user.")
       else {
         if(this.user_info.psw != data["psw"])
           alert("Email and password do not match. Please try again.")

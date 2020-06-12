@@ -107,7 +107,7 @@ export class ViewComponent implements OnInit {
           this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
           alert("Scroll down to view the assignment.");
     }, (err) => {
-      alert("You haven't submitted the assignment yet. Please submit the assignment first/");
+      alert("You haven't submitted the assignment yet. Please submit the assignment first.");
     });
   }
 
