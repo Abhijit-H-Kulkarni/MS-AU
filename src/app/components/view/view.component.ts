@@ -114,7 +114,7 @@ export class ViewComponent implements OnInit {
   downloadQuestion(assid) {
     this.viewService.getById({aid:assid,question:null,asstype:"",cid:this.cid,weight:""}).subscribe(data => {
       let blob:any = new Blob([data["question"]]);
-      fileSaver.saveAs(blob, 'question ' + assid + ' .jpg');
+      fileSaver.saveAs(blob);
 	    location.href = "/view";
     });
   }
