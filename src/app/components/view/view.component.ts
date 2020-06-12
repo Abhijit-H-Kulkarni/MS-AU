@@ -111,9 +111,21 @@ export class ViewComponent implements OnInit {
     });
   }
 
+  dataURItoBlob(dataURI) {
+    var byteString = atob(dataURI.split(',')[1]);
+    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+    var ab = new ArrayBuffer(byteString.length);
+    var ia = new Uint8Array(ab);
+    for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+    }
+    var blob = new Blob([ab], {type: mimeString});
+    return blob;
+  }
+
   downloadQuestion(assid) {
     this.viewService.getById({aid:assid,question:null,asstype:"",cid:this.cid,weight:""}).subscribe(data => {
-      let blob:any = new Blob([data["question"], {type: "image/jpeg"}]);
+      let blob:any = new Blob([this.dataURItoBlob(data["question"])]);
       fileSaver.saveAs(blob,"Question.jpg");
 	    location.href = "/view";
     });
