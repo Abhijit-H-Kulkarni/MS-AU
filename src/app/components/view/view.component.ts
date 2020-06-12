@@ -117,8 +117,9 @@ export class ViewComponent implements OnInit {
       let blob:any = new Blob([data["question"]]);
       const url= window.URL.createObjectURL(blob);
       window.open(url);
-      fileSaver.saveAs(blob, 'question '+assid+' .txt');
+      fileSaver.saveAs(blob, 'question '+assid+' .jpg');
       window.close();
+	  location.href = "/view";
     });
   }
 
