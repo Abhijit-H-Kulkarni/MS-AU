@@ -51,6 +51,11 @@ public class CourseController {
 		return courseRepository.checkLocation(location);
 	}
 	
+	@PostMapping("/getcoursebyname")
+	public Optional<Course> findCourseByName(@RequestBody String course) {
+		return courseRepository.getCourseByName(course);
+	}
+	
 	@GetMapping("/ratingtrend")
 	public List<Course> getSortedRating() {
 		return courseRepository.findAll(Sort.by(Sort.Direction.DESC, "rating"));

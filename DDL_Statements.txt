@@ -1,0 +1,92 @@
+CREATE DATABASE msau;
+USE msau;
+
+CREATE TABLE `assignment` (
+  `aid` int NOT NULL AUTO_INCREMENT,
+  `question` longblob,
+  `asstype` varchar(20) DEFAULT NULL,
+  `cid` int DEFAULT NULL,
+  `weight` int DEFAULT NULL,
+  PRIMARY KEY (`aid`),
+  KEY `cid` (`cid`),
+  CONSTRAINT `assignment_ibfk_1` FOREIGN KEY (`cid`) REFERENCES `course` (`cid`)
+) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE `course` (
+  `cid` int NOT NULL AUTO_INCREMENT,
+  `cname` varchar(50) DEFAULT NULL,
+  `cdescription` varchar(100) DEFAULT NULL,
+  `skills` varchar(100) DEFAULT NULL,
+  `prerequisites` varchar(100) DEFAULT NULL,
+  `location` varchar(50) DEFAULT NULL,
+  `tid` int DEFAULT NULL,
+  `last_updated` datetime DEFAULT NULL,
+  `rating` float DEFAULT '0',
+  PRIMARY KEY (`cid`),
+  KEY `tid` (`tid`),
+  CONSTRAINT `course_ibfk_1` FOREIGN KEY (`tid`) REFERENCES `trainer` (`tid`)
+) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE `location_count` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `location` varchar(50) DEFAULT NULL,
+  `count` int DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE `rating` (
+  `uid` int NOT NULL,
+  `cid` int NOT NULL,
+  `rating` int NOT NULL,
+  PRIMARY KEY (`uid`,`cid`),
+  KEY `cid` (`cid`),
+  CONSTRAINT `rating_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`),
+  CONSTRAINT `rating_ibfk_2` FOREIGN KEY (`cid`) REFERENCES `course` (`cid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE `submission` (
+  `aid` int NOT NULL,
+  `uid` int NOT NULL,
+  `cid` int NOT NULL,
+  `solution` longblob NOT NULL,
+  `score` int DEFAULT NULL,
+  PRIMARY KEY (`aid`,`uid`,`cid`),
+  KEY `cid` (`cid`),
+  KEY `uid` (`uid`),
+  CONSTRAINT `submission_ibfk_1` FOREIGN KEY (`cid`) REFERENCES `course` (`cid`),
+  CONSTRAINT `submission_ibfk_2` FOREIGN KEY (`aid`) REFERENCES `assignment` (`aid`),
+  CONSTRAINT `submission_ibfk_3` FOREIGN KEY (`uid`) REFERENCES `users` (`uid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE `trainer` (
+  `tid` int NOT NULL AUTO_INCREMENT,
+  `tname` varchar(50) DEFAULT NULL,
+  `designation` varchar(100) DEFAULT NULL,
+  `specialities` varchar(100) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`tid`)
+) ENGINE=InnoDB AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+CREATE TABLE `users` (
+  `uid` int NOT NULL AUTO_INCREMENT,
+  `email` varchar(50) DEFAULT NULL,
+  `uname` varchar(50) DEFAULT NULL,
+  `psw` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`uid`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `coursecount` (
+  `id` int NOT NULL,
+  `cid` int DEFAULT NULL,
+  `count` int DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `cid` (`cid`),
+  CONSTRAINT `coursecount_ibfk_1` FOREIGN KEY (`cid`) REFERENCES `course` (`cid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci

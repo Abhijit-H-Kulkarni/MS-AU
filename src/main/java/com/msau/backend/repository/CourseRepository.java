@@ -2,6 +2,7 @@ package com.msau.backend.repository;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -19,4 +20,7 @@ public interface CourseRepository extends JpaRepository<Course, Integer> {
 	
 	@Query("select c from Course c where c.location=?1")
 	public List<Course> checkLocation(String location);
+	
+	@Query("select c from Course c where c.cname=?1")
+	public Optional<Course> getCourseByName(String name);
 }
