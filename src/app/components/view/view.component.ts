@@ -21,6 +21,7 @@ export class ViewComponent implements OnInit {
   avgRating;
   submissionId;
   retrievedImage: any;
+  question: any;
   base64Data: any;
   retrieveResponse: any;
   statusmap = new Map();
@@ -113,8 +114,9 @@ export class ViewComponent implements OnInit {
 
   downloadQuestion(assid) {
     this.viewService.getById({aid:assid,question:null,asstype:"",cid:this.cid,weight:""}).subscribe(data => {
-      let blob:any = new Blob([data["question"], {type: "image/jpeg;base64"}]);
-      fileSaver.saveAs(blob,"Question.jpg");
+      // let blob:any = new Blob([data["question"], {type: "image/jpeg;base64"}]);
+      // fileSaver.saveAs(blob,"Question.jpg");
+      this.question = 'data:image/jpeg;base64,' + data["question"];
 	    location.href = "/view";
     });
   }
