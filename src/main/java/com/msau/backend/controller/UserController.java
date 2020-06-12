@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins="https://ms-au.herokuapp.com")
 @RequestMapping("/user")
 public class UserController {
 	@Autowired

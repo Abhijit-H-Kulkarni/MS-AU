@@ -14,7 +14,7 @@ import com.msau.backend.models.Location;
 import com.msau.backend.repository.LocationRerpository;
 
 @RestController
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins="https://ms-au.herokuapp.com")
 @RequestMapping("/location")
 public class LocationController {
 	@Autowired

@@ -16,7 +16,7 @@ import com.msau.backend.models.CourseCount;
 import com.msau.backend.repository.CourseCountRepository;
 
 @RestController
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins="https://ms-au.herokuapp.com")
 @RequestMapping("/coursecount")
 public class CourseCountController {
 	@Autowired

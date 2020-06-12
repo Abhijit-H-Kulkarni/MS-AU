@@ -14,7 +14,7 @@ import com.msau.backend.models.Trainer;
 import com.msau.backend.repository.TrainerRepository;
 
 @RestController
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins="https://ms-au.herokuapp.com")
 @RequestMapping("/trainer")
 public class TrainerController {
 	@Autowired

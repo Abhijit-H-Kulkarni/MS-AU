@@ -22,7 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.msau.backend.models.SubmissionId;
 
 @RestController
-@CrossOrigin(origins="http://localhost:4200")
+@CrossOrigin(origins="https://ms-au.herokuapp.com")
 @RequestMapping("/submission")
 public class SubmissionController {
 	@Autowired
@@ -91,7 +91,6 @@ public class SubmissionController {
            outputStream.close();
         } catch (IOException e) {
         }
-        System.out.println("Compressed Image Byte Size - " + outputStream.toByteArray().length);
         return outputStream.toByteArray();
     }
 	
@@ -111,8 +110,4 @@ public class SubmissionController {
         }
         return outputStream.toByteArray();
     }
-
-
-
-	
 }
