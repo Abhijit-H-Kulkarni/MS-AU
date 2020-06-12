@@ -23,7 +23,7 @@ import com.msau.backend.models.Assignment;
 import com.msau.backend.repository.AssignmentRepository;
 
 @RestController
-@CrossOrigin(origins="https://ms-au.herokuapp.com")
+@CrossOrigin(origins="https://ms-au-frontend.herokuapp.com")
 @RequestMapping("/assignment")
 public class AssignmentController {
 	@Autowired

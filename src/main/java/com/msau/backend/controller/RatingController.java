@@ -13,7 +13,7 @@ import java.util.List;
 import com.msau.backend.repository.RatingRepository;
 
 @RestController
-@CrossOrigin(origins="https://ms-au.herokuapp.com")
+@CrossOrigin(origins="https://ms-au-frontend.herokuapp.com")
 @RequestMapping("/rating")
 public class RatingController {
 	

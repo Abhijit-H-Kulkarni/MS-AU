@@ -22,7 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.msau.backend.models.SubmissionId;
 
 @RestController
-@CrossOrigin(origins="https://ms-au.herokuapp.com")
+@CrossOrigin(origins="https://ms-au-frontend.herokuapp.com")
 @RequestMapping("/submission")
 public class SubmissionController {
 	@Autowired
