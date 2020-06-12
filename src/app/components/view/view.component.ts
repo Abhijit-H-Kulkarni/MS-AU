@@ -113,7 +113,7 @@ export class ViewComponent implements OnInit {
 
   downloadQuestion(assid) {
     this.viewService.getById({aid:assid,question:null,asstype:"",cid:this.cid,weight:""}).subscribe(data => {
-      console.log(data["question"]);
+	  console.log(data);
       let blob:any = new Blob([data["question"]]);
       const url= window.URL.createObjectURL(blob);
       window.open(url);
@@ -125,6 +125,7 @@ export class ViewComponent implements OnInit {
   setRating(value) {
     this.rating = value;
   }
+  
   addRating() {
     this.ratingService.addRating({id:{uid:this.uid,cid:this.cid},rating:this.rating}).subscribe(data => {
       this.avgRating = data;
