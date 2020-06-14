@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class TrainerService {
 
-  private baseUrl = 'http://localhost:8080/trainer/';
+  private baseUrl = 'https://ms-au-backend.herokuapp.com/trainer/';
   constructor(private http:HttpClient) { }
 
   getTrainers(): Observable<object> {

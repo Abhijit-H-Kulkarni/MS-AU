@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class LocationService {
 
-  private baseUrl = 'http://localhost:8080/location/'; 
+  private baseUrl = 'https://ms-au-backend.herokuapp.com/location/'; 
   constructor(private http:HttpClient) { }
 
   incrementCount(location): Observable<object> {

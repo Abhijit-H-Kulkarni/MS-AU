@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class RatingService {
 
-  baseUrl = 'http://localhost:8080/rating/';
+  baseUrl = 'https://ms-au-backend.herokuapp.com/rating/';
   constructor(private http:HttpClient) { }
 
   getAllRating(rating): Observable<object> {

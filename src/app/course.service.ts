@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CourseService {
-  private baseUrl = 'http://localhost:8080/course/'; 
+  private baseUrl = 'https://ms-au-backend.herokuapp.com/course/'; 
 
   constructor(private http:HttpClient) { }
 

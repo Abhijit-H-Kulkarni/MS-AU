@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ViewService {
 
-  baseUrl = 'http://localhost:8080/assignment/';
+  baseUrl = 'https://ms-au-backend.herokuapp.com/assignment/';
   constructor(private http:HttpClient) { }
 
   getAssignments(): Observable<object> {

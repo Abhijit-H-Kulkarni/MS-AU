@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class SubmissionService {
 
-  baseUrl = 'http://localhost:8080/submission/';
+  baseUrl = 'https://ms-au-backend.herokuapp.com/submission/';
   constructor(private http:HttpClient) { }
 
   getSubmissionById(submissionId): Observable<object> {
