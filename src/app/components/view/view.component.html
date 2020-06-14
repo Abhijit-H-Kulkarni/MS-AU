@@ -10,7 +10,7 @@
             <div class="assignment">
                 <br/>
                 <div id="assDetails">
-                    <h6 style="margin-left: 3%;max-width:600px;word-wrap:break-word;">Question : <a href="http://localhost:4200/view" (click)="downloadQuestion(assignment.value.aid)">Click to download the Question.</a></h6>
+                    <h6 style="margin-left: 3%;max-width:600px;word-wrap:break-word;">Question : <a href="" (click)="downloadQuestion(assignment.value.aid)">Click to download the Question.</a></h6>
                     <h6 style="margin-left: 3%;">Type : {{ assignment.value.asstype }}</h6>
                     <h6 style="margin-left: 3%;">Weightage : {{ assignment.value.weight }}</h6>
                     <h6 *ngIf="statusmap.get(assignment.value.aid)==true" style="margin-left: 3%;">Status : Submitted</h6>
