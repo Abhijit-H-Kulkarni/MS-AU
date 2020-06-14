@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
           if(this.user_info.uname=="admin")
             localStorage.setItem("isadmin","true");
           else
-            localStorage.setItem("isadmin","true");
+            localStorage.setItem("isadmin","false");
           localStorage.setItem('welcome','true');
           location.href="/assessment";
         }
