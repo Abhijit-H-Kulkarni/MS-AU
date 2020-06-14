@@ -123,7 +123,8 @@ export class ViewComponent implements OnInit {
     return blob;
   }
 
-  downloadQuestion(assid) {
+  downloadQuestion(event:Event,assid) {
+    event.preventDefault();
     this.viewService.getById({aid:assid,question:null,asstype:"",cid:this.cid,weight:""}).subscribe(data => {
       let blob:any = new Blob([this.dataURItoBlob(data["question"])]);
       fileSaver.saveAs(blob,"Question.jpg");
