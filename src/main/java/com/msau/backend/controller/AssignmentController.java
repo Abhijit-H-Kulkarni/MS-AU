@@ -17,6 +17,8 @@ import java.util.zip.DataFormatException;
 import java.util.zip.Deflater;
 import java.util.zip.Inflater;
 
+import javax.transaction.Transactional;
+
 import com.msau.backend.models.Assignment;
 
 
@@ -34,6 +36,7 @@ public class AssignmentController {
 		return assignmentRepository.findAll();
 	}
 	
+	@Transactional
 	@PostMapping("/addassignment")
 	public Assignment addAssignment(@RequestParam("imageFile") MultipartFile file, @RequestParam("assType") String asstype, @RequestParam("weight") int weight,@RequestParam("cid") int cid) {
 		Assignment assignment = new Assignment();

@@ -2,6 +2,8 @@ package com.msau.backend.controller;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,6 +32,7 @@ public class LocationController {
 		return locationRepository.checkLocation(location);
 	}
 	
+	@Transactional
 	@PostMapping("/incrementcount")
 	public void incCount(@RequestBody String location) {
 		List<Location> result = checkLocation(location);

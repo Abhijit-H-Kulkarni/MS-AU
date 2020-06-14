@@ -3,6 +3,8 @@ package com.msau.backend.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -26,16 +28,19 @@ public class CourseController {
 		return courseRepository.findAll();
 	}
 	
+	@Transactional
 	@PostMapping("/addcourse")
 	public void addCourse(@RequestBody Course course) {
 		courseRepository.save(course);
 	}
 	
+	@Transactional
 	@PostMapping("/deletecourse")
 	public void deleteCourse(@RequestBody Course course) {
 		courseRepository.deleteById(course.getCid());
 	}
 	
+	@Transactional
 	@PostMapping("/updatecourse")
 	public void updateCourse(@RequestBody Course course) {
 		courseRepository.save(course);
@@ -61,6 +66,7 @@ public class CourseController {
 		return courseRepository.findAll(Sort.by(Sort.Direction.DESC, "rating"));
 	}
 	
+	@Transactional
 	@PostMapping("/updateRating")
 	public void updateRating(@RequestBody Course course) {
 		courseRepository.setRating(course.getCid(), course.getRating());

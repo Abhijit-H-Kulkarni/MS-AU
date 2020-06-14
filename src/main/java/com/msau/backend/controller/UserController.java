@@ -8,18 +8,21 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 @RestController
 @CrossOrigin(origins="https://ms-au-frontend.herokuapp.com")
 @RequestMapping("/user")
 public class UserController {
 	@Autowired
-    UserRepository userRepository;
+    UserRepository userRepository; 
 	
 	@GetMapping("/getusers")
 	public List<User> getAllUsers() {
 	    return userRepository.findAll();
 	}
 	
+	@Transactional
 	@PostMapping("/adduser")
 	public void addUser(@RequestBody User user) {
 		userRepository.save(user);

@@ -10,6 +10,8 @@ import com.msau.backend.models.Rating;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import com.msau.backend.repository.RatingRepository;
 
 @RestController
@@ -22,6 +24,7 @@ public class RatingController {
 	@Autowired
 	RatingRepository ratingRespository;
 	
+	@Transactional
 	@PostMapping("/addrating")
 	public float addRating(@RequestBody Rating rating) {
 		ratingRespository.save(rating);

@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.Optional;
+
+import javax.transaction.Transactional;
+
 import java.util.List;
 
 import com.msau.backend.models.Trainer;
@@ -30,6 +33,7 @@ public class TrainerController {
 		return trainerRepository.findById(trainer.getTid());
 	}
 	
+	@Transactional
 	@PostMapping("/addtrainer")
 	public void addTrainer(@RequestBody Trainer trainer) {
 		trainerRepository.save(trainer);

@@ -7,6 +7,8 @@ import java.util.zip.DataFormatException;
 import java.util.zip.Deflater;
 import java.util.zip.Inflater;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,6 +40,7 @@ public class SubmissionController {
 		return submissionRepository.findById(id);
 	}
 	
+	@Transactional
 	@PostMapping("/dropsubmissionbyid")
 	public void dropSubmission(@RequestBody SubmissionId id) {
 		submissionRepository.deleteById(id);
@@ -48,6 +51,7 @@ public class SubmissionController {
 		return submissionRepository.getsumscore(id.getUid(),id.getCid());
 	}
 	
+	@Transactional
 	@PostMapping("/upload")
 	public void Upload(@RequestParam("imageFile") MultipartFile file, @RequestParam("uid") int uid, @RequestParam("assid") int aid, @RequestParam("cid") int cid, @RequestParam("score") String score) {
 		Submission submission = new Submission();
