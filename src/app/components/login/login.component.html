@@ -5,14 +5,14 @@
     <div class="form-group">
       <label for="uname">Email ID:</label>
       <input type="email" class="form-control" id="uname" [(ngModel)]="user_info.email" placeholder="Enter Email ID" name="email" required>
-      <div *ngif="didsubmit" class="valid-feedback">Valid.</div>
-      <div *ngif="didsubmit" class="invalid-feedback">Invalid Email ID.</div>
+      <div class="valid-feedback">Valid.</div>
+      <div class="invalid-feedback">Invalid Email ID.</div>
     </div>
     <div class="form-group">
       <label for="pwd">Password:</label>
       <input type="password" class="form-control" id="pwd" [(ngModel)]="user_info.psw" placeholder="Enter password" name="pswd" required>
-      <div *ngif="didsubmit" class="valid-feedback">Valid.</div>
-      <div *ngif="didsubmit" class="invalid-feedback">This field can't be empty.</div>
+      <div class="valid-feedback">Valid.</div>
+      <div class="invalid-feedback">This field can't be empty.</div>
     </div>
     <button type="submit" class="btn btn-primary" id="submit" (click)="login($event)">Login <i class="fas fa-sign-in-alt"></i></button><br/>
     <div class="google">
