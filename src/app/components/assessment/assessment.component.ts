@@ -180,7 +180,6 @@ export class AssessmentComponent implements OnInit {
         for(let courseArrayData of data) {
         let courseArray = courseArrayData as course[];
         for(let course of courseArray) {
-          console.log(course);
           this.tempcourses.push(course);
         }
       }
