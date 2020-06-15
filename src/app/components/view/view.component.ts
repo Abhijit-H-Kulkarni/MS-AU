@@ -69,7 +69,7 @@ export class ViewComponent implements OnInit {
   }
   
   uploadAssignment(assid) {
-    if(this.fileToUpload.size == 0) 
+    if(this.fileToUpload == null) 
       alert("Please chose a file to upload.");
     else {
     const uploadData = new FormData();
