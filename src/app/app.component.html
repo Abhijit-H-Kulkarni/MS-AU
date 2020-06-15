@@ -28,7 +28,7 @@
   </nav>
   <h1 class="text" *ngIf="loginStatus=='false' || loginStatus==null">Welcome to MS-AU Management Portal</h1>
   <div class="video" *ngIf="logoDisplayStatus">
-    <video height="450" width="1050" autoplay="true" loop>
+    <video height="450" width="1050" autoplay playsinline loop preload>
       <source src="../assets/Think.mp4" type="video/mp4">
     </video>
   </div>
