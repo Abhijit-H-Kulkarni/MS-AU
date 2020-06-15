@@ -28,8 +28,9 @@
   </nav>
   <h1 class="text" *ngIf="loginStatus=='false' || loginStatus==null">Welcome to MS-AU Management Portal</h1>
   <div class="images" *ngIf="logoDisplayStatus" style="margin-top: 10%;">
-    <img src="../assets/logo.jpg" style="height:30%;width:40%;float:left;margin-left: 8%;margin-top:2%;"/>
-    <img src="../assets/accolite.jpg" style="height:30%;width:40%;float:right;margin-right: 8%;"/>
+    <video width="400">
+      <source src="../assets/Think.mp4" type="video/mp4">
+    </video>
   </div>
 </body>
 <router-outlet></router-outlet>
