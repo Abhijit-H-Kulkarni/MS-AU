@@ -21,7 +21,7 @@ public class CourseCount {
 	@Column(nullable = false)
 	int cid;
 	
-	@Column()
+	@Column(nullable=true)
 	int count;
 
 	public int getId() {
