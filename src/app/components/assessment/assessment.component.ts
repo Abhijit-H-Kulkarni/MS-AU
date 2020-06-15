@@ -189,9 +189,7 @@ export class AssessmentComponent implements OnInit {
       let courseCountArray = data as coursecount[];
       let observables = new Array();
       for(let i=0;i<courseCountArray.length;i++) {
-        this.Course.cid = courseCountArray[i].cid;
-        console.log(courseCountArray[i].cid);
-        observables.push(this.courseService.getCourseById(this.Course));
+        observables.push(this.courseService.getCourseById({cid:courseCountArray[i].cid,cname:"",cdescription:"",skills:"",prerequisites:"",tid:"",last_updated:"",feedback:"",location:""}));
       }
       forkJoin(observables).subscribe(data => {
         console.log(data);
