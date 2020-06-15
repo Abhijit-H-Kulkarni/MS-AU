@@ -174,6 +174,7 @@ export class AssessmentComponent implements OnInit {
       this.tempcourses = [];
       let observables = new Array();
       for(let i=0;i<locationArray.length;i++) {
+        console.log(locationArray[i]);
         observables.push(this.courseService.getCoursesByLocation(locationArray[i]));
       }
       forkJoin(observables).subscribe(data => {
