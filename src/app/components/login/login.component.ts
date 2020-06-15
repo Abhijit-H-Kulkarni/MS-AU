@@ -23,12 +23,15 @@ export class LoginComponent implements OnInit {
    
   login(event: Event) {
     let encryptionObj:Encryption = new Encryption();
-    this.user_info.psw = encryptionObj.encrypt(this.user_info.psw);
-    this.loginService.findUser(this.user_info).subscribe(data => {
+    let enpsw = encryptionObj.encrypt(this.user_info.psw);
+    if(this.user_info.email=="" || this.user_info.psw=="") 
+      alert("Invalid input. Please enter all the fields properly.")
+    else {
+    this.loginService.findUser({email:this.user_info.email,uname:"",psw:enpsw}).subscribe(data => {
       if(data==null)
         alert("You aren't a registered user.")
       else {
-        if(this.user_info.psw != data["psw"])
+        if(enpsw != data["psw"])
           alert("Email and password do not match. Please try again.")
         else {
           this.user_info.uname = data["uname"];
@@ -43,7 +46,10 @@ export class LoginComponent implements OnInit {
           location.href="/assessment";
         }
       }
+    }, err => {
+      alert("Login failed.");
     });
+  }
   }
 
   signInGoogle(platform:string) {

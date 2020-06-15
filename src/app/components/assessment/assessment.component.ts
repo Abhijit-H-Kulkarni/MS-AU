@@ -4,7 +4,6 @@ import { TrainerService } from 'src/app/trainer.service';
 import { ViewService } from 'src/app/view.service'
 import { course } from './course';
 import { SubmissionService } from 'src/app/submission.service';
-import { assignment } from '../view/assignment';
 import { LocationService } from 'src/app/location.service';
 import {forkJoin} from 'rxjs';
 import { CoursecountService } from 'src/app/coursecount.service';
@@ -192,6 +191,7 @@ export class AssessmentComponent implements OnInit {
         this.Course.cid = courseCount.cid;
         this.courseService.getCourseById(this.Course).subscribe(data=> {
           let courseEle = data as course;
+          console.log(courseEle);
           this.tempcourses.push(courseEle);
         })
       }

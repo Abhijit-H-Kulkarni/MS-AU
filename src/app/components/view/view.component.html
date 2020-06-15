@@ -1,5 +1,5 @@
 <div class="heading">
-    <h2>Here are the list of assignments : </h2>
+    <h2>Here is the list of assignments : </h2>
     <h6>(Only image uploads are supported.)</h6>
 </div>
 <br/>
@@ -17,7 +17,7 @@
                     <h6 *ngIf="statusmap.get(assignment.value.aid)==false" style="margin-left: 3%;">Status : Pending</h6>
                 </div>
                 <button class="btn btn-success" id="download" (click)="downloadAssignment(assignment.value.aid)">View <i class="fas fa-eye"></i></button>
-                <button class="btn btn-primary" id="submit" (click)="uploadAssignment(assignment.value.aid)">Uplaod <i class="fas fa-upload"></i></button>
+                <button class="btn btn-primary" id="submit" (click)="uploadAssignment(assignment.value.aid)">Upload <i class="fas fa-upload"></i></button>
                 <button class="btn btn-danger btn-block" id="withdraw" (click)="dropAssignment(assignment.value.aid)">Withdraw <i class="fas fa-times"></i></button>
             </div>
             <input type="file" id="upload" (change)="handleFileInput($event.target.files)">
@@ -27,7 +27,7 @@
     </table>
     <div *ngIf="ratedList">
         <div class="stars" *ngIf="ratedList.length==0">
-            <h5 style="margin-left:20%;">Rate the course :</h5>
+            <h5 style="margin-left:21%;">Rate the course :</h5>
             <form action="">
                 <input class="star star-5" id="star-5" type="radio" name="star" (click)="setRating(5)"/>
                 <label class="star star-5" for="star-5"></label>
@@ -37,7 +37,7 @@
                 <label class="star star-3" for="star-3"></label>
                 <input class="star star-2" id="star-2" type="radio" name="star" (click)="setRating(2)"/>
                 <label class="star star-2" for="star-2"></label>
-                <input class="star star-1" id="star-1" type="radio" name="star" (click)="setRating(1)"/>
+                <input class="star star-1" id="star-1" type="radio" name="star" (click)="setRating(1)" active/>
                 <label class="star star-1" for="star-1"></label>
                 <button style="margin-left:15%;" class="btn btn-primary" id="rate" (click)="addRating()">Submit <i class="fas fa-paper-plane"></i></button>
             </form>

@@ -17,7 +17,7 @@ export class AppComponent {
   constructor(private socioAuthServ:AuthService, @Inject(DOCUMENT) private document: Document) {
     this.loginStatus = localStorage.getItem('loginStatus');
     let url = this.document.location.href;
-    if(url=="http://localhost:4200/")
+    if(url=="https://ms-au-frontend.herokuapp.com/")
       this.logoDisplayStatus = true;
     else
       this.logoDisplayStatus = false;
