@@ -172,14 +172,13 @@ export class AssessmentComponent implements OnInit {
     this.locationService.getLocations().subscribe(data=> {
       let locationArray = data as string[];
       this.tempcourses = [];
+      let observables = new Array();
       for(let location of locationArray) {
-          this.courseService.getCoursesByLocation(location).subscribe(data=>{
-            let courseArray = data as course[];
-            for(let course of courseArray) {
-              this.tempcourses.push(course);
-            }
-          });
+        observables.push(this.courseService.getCoursesByLocation(location));
       }
+      forkJoin(observables).subscribe(data => {
+        this.tempcourses = data;
+      });
     });
   }
 
@@ -192,7 +191,6 @@ export class AssessmentComponent implements OnInit {
         observables.push(this.courseService.getCourseById({cid:courseCountArray[i].cid,cname:"",cdescription:"",skills:"",prerequisites:"",tid:"",last_updated:"",feedback:"",location:""}));
       }
       forkJoin(observables).subscribe(data => {
-        console.log(data);
         this.tempcourses = data;
       });
     })
