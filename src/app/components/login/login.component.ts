@@ -13,6 +13,7 @@ import { Encryption } from '../encryption/encryption';
 export class LoginComponent implements OnInit {
   user:any;
   user_info = {email:'', uname:'', psw:''};
+  didsubmit:boolean = false;
 
   constructor(private socioAuthServ:AuthService, private router: Router, private loginService:LoginService) {
     console.log("in constructor");
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
   login(event: Event) {
     let encryptionObj:Encryption = new Encryption();
     let enpsw = encryptionObj.encrypt(this.user_info.psw);
+    this.didsubmit = true;
     if(this.user_info.email=="" || this.user_info.psw=="") 
       alert("Invalid input. Please enter all the fields properly.")
     else {
