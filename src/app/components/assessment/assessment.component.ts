@@ -194,6 +194,7 @@ export class AssessmentComponent implements OnInit {
           this.tempcourses.push(courseEle);
         })
       }
+      console.log(this.tempcourses);
     })
   }
 }
