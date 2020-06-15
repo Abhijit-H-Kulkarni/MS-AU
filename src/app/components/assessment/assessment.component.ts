@@ -186,6 +186,7 @@ export class AssessmentComponent implements OnInit {
   courseTrend() {
     this.courseCount.getAllCourses().subscribe(data => {
       this.tempcourses = [];
+      console.log(data);
       let couseCountArray = data as coursecount[];
       for(let courseCount of couseCountArray) {
         this.Course.cid = courseCount.cid;
