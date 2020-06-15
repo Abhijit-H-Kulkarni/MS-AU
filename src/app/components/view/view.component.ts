@@ -69,6 +69,9 @@ export class ViewComponent implements OnInit {
   }
   
   uploadAssignment(assid) {
+    if(this.fileToUpload.size == 0) 
+      alert("Please chose a file to upload.");
+    else {
     const uploadData = new FormData();
     uploadData.append('imageFile', this.fileToUpload, this.fileToUpload.name);
     uploadData.append('uid', this.uid);
@@ -84,6 +87,7 @@ export class ViewComponent implements OnInit {
           alert("Could not upload the file. Please check file type and file size and try again.");
         });
     });
+  }
   }
 
   dropAssignment(assid) {
