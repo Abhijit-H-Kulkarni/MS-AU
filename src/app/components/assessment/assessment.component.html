@@ -30,7 +30,7 @@
                         <h6 *ngIf="course.value.rating != 0">Rating : {{ course.value.rating }}</h6>
                         <svg *ngIf="!isAdmin" id="svg" viewbox="0 0 100 100">
                             <circle cx="50" cy="50" r="45" fill="#FDB900"/>
-                            <path fill="none" stroke-linecap="round" stroke-width="3" stroke="#fff"
+                            <path *ngIf="progress.get(course.value.cid)!=0" fill="none" stroke-linecap="round" stroke-width="3" stroke="#fff"
                                   attr.stroke-dasharray="{{ (progress.get(course.value.cid)*255)/100 }} 255"
                                   d="M50 10
                                      a 40 40 0 0 1 0 80
