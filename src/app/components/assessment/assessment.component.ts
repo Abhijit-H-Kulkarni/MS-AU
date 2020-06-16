@@ -84,16 +84,16 @@ export class AssessmentComponent implements OnInit {
         let observables = new Array();
         this.viewService.getAssignments().subscribe(data => {
           let assignmentArray = data as assignment[];
-          let total = 0;
           for(let ass of assignmentArray) {
             observables.push(this.submissionService.getSubmissionById({aid:ass["aid"],uid:this.uid,cid:acourse["cid"]}));
-            total++;
           }
           forkJoin(observables).subscribe(data => {
             let submitted = 0;
+            let total = 0;
             data.forEach((element)=>{
               if(element!=null)
                 submitted++;
+              total++;
             });
             if(total != 0) {
             this.progress.set(acourse["cid"],Math.ceil((submitted/total)*100));
