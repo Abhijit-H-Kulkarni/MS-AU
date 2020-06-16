@@ -84,16 +84,13 @@ export class AssessmentComponent implements OnInit {
         });
         let observables = new Array();
         this.viewService.getAssignmentsById({aid:"",question:null,asstype:"",cid:acourse["cid"],weight:""}).subscribe(data => {
-          console.log(data);
-          if(data==null) {
-            this.progress.set(acourse["cid"],0);
-          }
-          else {
           let assignmentArray = data as assignment[];
+          if(assignmentArray.length==0)
+            this.progress.set(acourse["cid"],0);
+          else {
           for(let ass of assignmentArray) {
               observables.push(this.submissionService.getSubmissionById({aid:ass["aid"],uid:this.uid,cid:acourse["cid"]}));
             } 
-          }
           
           forkJoin(observables).subscribe(data => {
             let submitted = 0;
@@ -107,6 +104,7 @@ export class AssessmentComponent implements OnInit {
             this.progress.set(acourse["cid"],Math.ceil((submitted/total)*100));
             }
           })
+        }
         });
       }
       this.getSumOfWeights(courseArray);
