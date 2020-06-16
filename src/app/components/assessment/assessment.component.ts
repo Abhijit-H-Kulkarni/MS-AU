@@ -82,10 +82,10 @@ export class AssessmentComponent implements OnInit {
           this.trainersmap.set(acourse["tid"],{"tname":trainersdata["tname"],"designation":trainersdata["designation"]});
         });
         let observables = new Array();
-        this.viewService.getAssignments().subscribe(data => {
+        this.viewService.getAssignmentsById({aid:"",question:null,asstype:"",cid:acourse["cid"],weight:""}).subscribe(data => {
           let assignmentArray = data as assignment[];
           for(let ass of assignmentArray) {
-            observables.push(this.submissionService.getSubmissionById({aid:ass["aid"],uid:this.uid,cid:acourse["cid"]}));
+              observables.push(this.submissionService.getSubmissionById({aid:ass["aid"],uid:this.uid,cid:acourse["cid"]}));
           }
           forkJoin(observables).subscribe(data => {
             let submitted = 0;
