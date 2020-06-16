@@ -8,6 +8,7 @@ import { LocationService } from 'src/app/location.service';
 import {forkJoin} from 'rxjs';
 import { CoursecountService } from 'src/app/coursecount.service';
 import { coursecount } from './coursecount';
+import { assignment } from '../view/assignment';
 
 
 
@@ -30,6 +31,7 @@ export class AssessmentComponent implements OnInit {
   tempcourses:any;
   searchstring:string;
   isRatingTrend = false;
+  progress;
   cid;
   uid;
   aid;
@@ -79,6 +81,19 @@ export class AssessmentComponent implements OnInit {
       for(let acourse of courseArray) {
         this.trainerService.findTrainer({tid:acourse["tid"],tname:'',designation:'',specialities:'',email:''}).subscribe(trainersdata => { 
           this.trainersmap.set(acourse["tid"],{"tname":trainersdata["tname"],"designation":trainersdata["designation"]});
+        });
+        this.viewService.getAssignments().subscribe(data => {
+          let assignmentArray = data as assignment[];
+          let total = 0;
+          let submitted = 0;
+          for(let ass of assignmentArray) {
+            this.submissionService.getSubmissionById({aid:ass["aid"],uid:this.uid,cid:acourse["cid"]}).subscribe(data=> {
+              if(data!=null)
+                submitted++;
+            });
+            total++;
+          }
+          this.progress.set(acourse["cid"],submitted/total);
         });
       }
       this.getSumOfWeights(courseArray);
