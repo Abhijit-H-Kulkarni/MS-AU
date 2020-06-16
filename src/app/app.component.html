@@ -27,7 +27,7 @@
     </ul>
   </nav>
   <h1 class="text" *ngIf="(loginStatus=='false' || loginStatus==null) && logoDisplayStatus">Welcome to <br/>MS-AU<br/> Management <br/>Portal</h1>
-  <h1 class="text" *ngIf="(loginStatus=='false' || loginStatus==null) && (logoDisplayStatus==false)">Welcome to MS-AU Management Portal</h1>
+  <h1 class="textLogin" *ngIf="(loginStatus=='false' || loginStatus==null) && (logoDisplayStatus==false)">Welcome to MS-AU Management Portal</h1>
   <video class="video" *ngIf="logoDisplayStatus" autoplay playsinline loop preload>
     <source src="../assets/Think.mp4" type="video/mp4">
   </video>
