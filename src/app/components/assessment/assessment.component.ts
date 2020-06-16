@@ -69,7 +69,6 @@ export class AssessmentComponent implements OnInit {
         })
       });
     });
-   console.log(this.scoresmap);
   }
 
   ngOnInit(): void {
