@@ -84,6 +84,7 @@ export class AssessmentComponent implements OnInit {
         });
         let observables = new Array();
         this.viewService.getAssignmentsById({aid:"",question:null,asstype:"",cid:acourse["cid"],weight:""}).subscribe(data => {
+          console.log(data);
           if(data==null) {
             this.progress.set(acourse["cid"],0);
           }
