@@ -96,7 +96,7 @@ export class AssessmentComponent implements OnInit {
                 submitted++;
             });
             if(total != 0) {
-            this.progress.set(acourse["cid"],submitted/total);
+            this.progress.set(acourse["cid"],Math.ceil(submitted/total));
             }
             else {
               this.progress.set(acourse["cid"],0);
