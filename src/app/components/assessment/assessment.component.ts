@@ -31,7 +31,7 @@ export class AssessmentComponent implements OnInit {
   tempcourses:any;
   searchstring:string;
   isRatingTrend = false;
-  progress;
+  progress = new Map();
   cid;
   uid;
   aid;
