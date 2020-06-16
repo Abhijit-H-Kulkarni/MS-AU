@@ -94,6 +94,7 @@ export class AssessmentComponent implements OnInit {
             total++;
           }
           this.progress.set(acourse["cid"],submitted/total);
+          console.log(submitted/total);
         });
       }
       this.getSumOfWeights(courseArray);
