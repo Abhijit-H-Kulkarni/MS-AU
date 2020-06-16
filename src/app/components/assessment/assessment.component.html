@@ -28,7 +28,7 @@
                         <h6 *ngIf="!scoresmap.get(course.value.cid)">Score : 0%</h6>
                         <h6 *ngIf="course.value.rating == 0">Rating : NA</h6>
                         <h6 *ngIf="course.value.rating != 0">Rating : {{ course.value.rating }}</h6>
-                        <svg id="svg" viewbox="0 0 100 100">
+                        <svg *ngIf="!isAdmin" id="svg" viewbox="0 0 100 100">
                             <circle cx="50" cy="50" r="45" fill="#FDB900"/>
                             <path fill="none" stroke-linecap="round" stroke-width="3" stroke="#fff"
                                   stroke-dasharray="1,255"
