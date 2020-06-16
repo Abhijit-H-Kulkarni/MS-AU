@@ -81,19 +81,19 @@ export class AssessmentComponent implements OnInit {
         this.trainerService.findTrainer({tid:acourse["tid"],tname:'',designation:'',specialities:'',email:''}).subscribe(trainersdata => { 
           this.trainersmap.set(acourse["tid"],{"tname":trainersdata["tname"],"designation":trainersdata["designation"]});
         });
+        let observables = new Array();
         this.viewService.getAssignments().subscribe(data => {
           let assignmentArray = data as assignment[];
           let total = 0;
           let submitted = 0;
           for(let ass of assignmentArray) {
-            this.submissionService.getSubmissionById({aid:ass["aid"],uid:this.uid,cid:acourse["cid"]}).subscribe(data=> {
-              if(data!=null)
-                submitted++;
-            });
+            observables.push(this.submissionService.getSubmissionById({aid:ass["aid"],uid:this.uid,cid:acourse["cid"]}));
             total++;
           }
-          this.progress.set(acourse["cid"],submitted/total);
-          console.log(submitted/total);
+          forkJoin(observables).subscribe(data => {
+            console.log(data);
+          })
+          // this.progress.set(acourse["cid"],submitted/total);
         });
       }
       this.getSumOfWeights(courseArray);
