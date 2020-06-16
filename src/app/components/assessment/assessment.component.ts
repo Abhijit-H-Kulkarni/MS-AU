@@ -9,6 +9,7 @@ import {forkJoin} from 'rxjs';
 import { CoursecountService } from 'src/app/coursecount.service';
 import { coursecount } from './coursecount';
 import { assignment } from '../view/assignment';
+import { IfStmt } from '@angular/compiler';
 
 
 
@@ -83,10 +84,16 @@ export class AssessmentComponent implements OnInit {
         });
         let observables = new Array();
         this.viewService.getAssignmentsById({aid:"",question:null,asstype:"",cid:acourse["cid"],weight:""}).subscribe(data => {
+          if(data==null) {
+            this.progress.set(acourse["cid"],0);
+          }
+          else {
           let assignmentArray = data as assignment[];
           for(let ass of assignmentArray) {
               observables.push(this.submissionService.getSubmissionById({aid:ass["aid"],uid:this.uid,cid:acourse["cid"]}));
+            } 
           }
+          
           forkJoin(observables).subscribe(data => {
             let submitted = 0;
             let total = 0;
@@ -97,10 +104,6 @@ export class AssessmentComponent implements OnInit {
             });
             if(total != 0) {
             this.progress.set(acourse["cid"],Math.ceil((submitted/total)*100));
-            console.log(this.progress);
-            }
-            else {
-              this.progress.set(acourse["cid"],0);
             }
           })
         });
