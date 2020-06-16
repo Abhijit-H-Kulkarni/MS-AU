@@ -35,7 +35,7 @@
                                   d="M50 10
                                      a 40 40 0 0 1 0 80
                                      a 40 40 0 0 1 0 -80"/>
-                            <text x="50" y="50" text-anchor="middle" dy="7" font-size="20">{{ progress.get(course.value.cid) | slice:0:6 }}%</text>
+                            <text x="50" y="50" text-anchor="middle" dy="7" font-size="20">{{ progress.get(course.value.cid) }}%</text>
                         </svg>
                     </div>
                     <button *ngIf="isAdmin" class="btn btn-primary" id="update" (click)="updateCourse(course.value.cid)">Update <i id="upicon" class="fas fa-pen"></i></button>
