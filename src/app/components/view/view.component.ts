@@ -69,8 +69,9 @@ export class ViewComponent implements OnInit {
   }
   
   uploadAssignment(assid) {
-    console.log(this.fileToUpload.name+" "+this.fileToUpload.type);
-    if(this.fileToUpload == null) 
+    if(this.fileToUpload.type!="image/jpeg")
+      alert("Only image uploads are supoourted. Please check your file type.");
+    else if(this.fileToUpload == null) 
       alert("Please chose a file to upload.");
     else {
     const uploadData = new FormData();
