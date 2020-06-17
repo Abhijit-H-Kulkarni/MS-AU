@@ -70,7 +70,7 @@ export class ViewComponent implements OnInit {
   
   uploadAssignment(assid) {
     if(this.fileToUpload.type!="image/jpeg")
-      alert("Only image uploads are supoourted. Please check your file type.");
+      alert("Only image uploads are suppourted. Please check your file type.");
     else if(this.fileToUpload == null) 
       alert("Please chose a file to upload.");
     else {
