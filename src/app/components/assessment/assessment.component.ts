@@ -87,7 +87,7 @@ export class AssessmentComponent implements OnInit {
           let assignmentArray = data as assignment[];
           console.log(assignmentArray)
           if(assignmentArray.length==0)
-            this.progress.set(acourse["cid"],0);
+            this.progress.set(acourse["cid"],null);
           else {
           for(let ass of assignmentArray) {
               observables.push(this.submissionService.getSubmissionById({aid:ass["aid"],uid:this.uid,cid:acourse["cid"]}));
