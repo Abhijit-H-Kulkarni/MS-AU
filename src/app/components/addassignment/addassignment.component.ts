@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewService } from 'src/app/view.service';
 import { CourseService } from 'src/app/course.service';
+import { assignment } from '../view/assignment';
 
 @Component({
   selector: 'app-addassignment',
@@ -21,6 +22,11 @@ export class AddassignmentComponent implements OnInit {
   addassignment(event:Event) {
     event.preventDefault();
     const uploadData = new FormData();
+    if(this.assignment.question.type!="image/jpeg")
+      alert("Only image uploads are suppourted. Please check your file type.");
+    else if(this.assignment.question==null)
+      alert("Please choose a file to upload.")
+    else {
     uploadData.append('imageFile', this.assignment.question, this.assignment.question.name);
     uploadData.append('assType', this.assignment.asstype);
     uploadData.append('weight', this.assignment.weight);
@@ -29,6 +35,7 @@ export class AddassignmentComponent implements OnInit {
       alert("Assignment added successfully.");
       location.reload();
     });
+    }
   }
 
   goBack() {
