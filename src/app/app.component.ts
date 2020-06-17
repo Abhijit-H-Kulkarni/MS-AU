@@ -20,7 +20,7 @@ export class AppComponent {
     if(url=="https://ms-au-frontend.herokuapp.com/")
       this.logoDisplayStatus = true;
     else
-      this.logoDisplayStatus = false;
+      this.logoDisplayStatus = true;
   }
   ngOnInit(): void {}
 
