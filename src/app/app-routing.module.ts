@@ -12,15 +12,15 @@ import { AddtrainerComponent } from './components/addtrainer/addtrainer.componen
 
 
 const routes: Routes = [
-  {path:'login', component:LoginComponent},
-  {path:'assessment', component:AssessmentComponent},
-  {path:'signup', component:SignupComponent},
-  {path:'password', component:NewPasswordComponent},
-  {path:'addcourse', component:AddcourseComponent},
-  {path:'updatecourse', component:CourseupdateComponent},
-  {path:'view', component:ViewComponent},
-  {path:'addassignment', component:AddassignmentComponent},
-  {path:'addtrainer', component:AddtrainerComponent}
+  {path:'login', loadChildren: () => import('./components/login/login.component').then(m => m.LoginComponent)},
+  {path:'assessment', loadChildren: () => import('./components/assessment/assessment.component').then(m => m.AssessmentComponent)},
+  {path:'signup', loadChildren: () => import('./components/signup/signup.component').then(m => m.SignupComponent)},
+  {path:'password', loadChildren: () => import('./components/new-password/new-password.component').then(m => m.NewPasswordComponent)},
+  {path:'addcourse', loadChildren: () => import('./components/addcourse/addcourse.component').then(m => m.AddcourseComponent)},
+  {path:'updatecourse', loadChildren: () => import('./components/courseupdate/courseupdate.component').then(m => m.CourseupdateComponent)},
+  {path:'view', loadChildren: () => import('./components/view/view.component').then(m => m.ViewComponent)},
+  {path:'addassignment', loadChildren: () => import('./components/addassignment/addassignment.component').then(m => m.AddassignmentComponent)},
+  {path:'addtrainer', loadChildren: () => import('./components/addtrainer/addtrainer.component').then(m => m.AddtrainerComponent)}
 ];
 
 @NgModule({
