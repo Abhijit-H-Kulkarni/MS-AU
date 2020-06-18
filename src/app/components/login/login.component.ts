@@ -14,17 +14,13 @@ import { NGXLogger } from 'ngx-logger';
 export class LoginComponent implements OnInit {
   user:any;
   user_info = {email:'', uname:'', psw:''};
-  shouldDisplay = false;
 
   constructor(private logger: NGXLogger,private socioAuthServ:AuthService, private router: Router, private loginService:LoginService) {
     
     if(localStorage.getItem('loginStatus')=='true')
       location.href="/assessment";
    }
-   
-   shouldDiplay() {
-    this.shouldDisplay = true;
-   }
+  
 
   login(event: Event) {
     let encryptionObj:Encryption = new Encryption();
