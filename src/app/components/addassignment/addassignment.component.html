@@ -23,26 +23,20 @@
     <p>(NOTE : Only image uploads allowed.)</p>
     <form action="#" class="was-validated" autocomplete='off'>
         <div class="form-group">
-            <label for="question">Question : </label><br/>
+            <label for="question">Question :<sup style="color: red;">*</sup></label><br/>
             <input type="file" id="question" (change)="handleFileInput($event.target.files)">
         </div>
         <div class="form-group">
-            <label for="cdescription">Type :</label>
+            <label for="cdescription">Type :<sup style="color: red;">*</sup></label>
             <input type="text" class="form-control" id="type" [(ngModel)]="assignment.asstype" placeholder="Enter Type" name="type" required>
-            <div class="valid-feedback">Valid.</div>
-            <div class="invalid-feedback">Invalid Assignment Type.</div>
         </div>
         <div class="form-group">
-            <label for="weightage">Weightage :</label>
+            <label for="weightage">Weightage :<sup style="color: red;">*</sup></label>
             <input type="number" class="form-control" id="weightage" [(ngModel)]="assignment.weight" placeholder="Enter Weightage" name="weightage" required>
-            <div class="valid-feedback">Valid.</div>
-            <div class="invalid-feedback">Invalid Weightage.</div>
         </div>
         <div class="form-group">
-            <label for="weightage">Course Id :</label>
+            <label for="weightage">Course Id :<sup style="color: red;">*</sup></label>
             <input type="number" class="form-control" id="courseid" [(ngModel)]="assignment.cid" placeholder="Enter Course Id" name="courseid" required>
-            <div class="valid-feedback">Valid.</div>
-            <div class="invalid-feedback">Invalid Course Id.</div>
         </div>
         <button type="submit" id="submit" class="btn btn-primary" id="submit" (click)="addassignment($event)">Add Assignment <i class="fas fa-plus-circle"></i></button><br/>
     </form>
