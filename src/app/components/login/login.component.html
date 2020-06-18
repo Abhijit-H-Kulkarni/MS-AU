@@ -4,11 +4,11 @@
   <form action="#" class="was-validated" autocomplete='off'>
     <div class="form-group">
       <label for="uname">Email ID:</label>
-      <input type="email" class="form-control" id="uname" [(ngModel)]="user_info.email" placeholder="Enter Email ID" name="email" (change)="shouldDiplay" required>
+      <input type="email" class="form-control" id="uname" [(ngModel)]="user_info.email" placeholder="Enter Email ID" name="email" required>
     </div>
     <div class="form-group">
       <label for="pwd">Password:</label>
-      <input type="password" class="form-control" id="pwd" [(ngModel)]="user_info.psw" placeholder="Enter password" name="pswd" (change)="shouldDiplay" required>
+      <input type="password" class="form-control" id="pwd" [(ngModel)]="user_info.psw" placeholder="Enter password" name="pswd" required>
     </div>
     <button type="submit" class="btn btn-primary" id="submit" (click)="login($event)">Login <i class="fas fa-sign-in-alt"></i></button><br/>
     <div class="google">
