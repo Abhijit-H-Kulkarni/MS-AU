@@ -10,6 +10,7 @@ import { CoursecountService } from 'src/app/coursecount.service';
 import { coursecount } from './coursecount';
 import { assignment } from '../view/assignment';
 import { IfStmt } from '@angular/compiler';
+import { NGXLogger } from 'ngx-logger';
 
 
 
@@ -37,7 +38,7 @@ export class AssessmentComponent implements OnInit {
   uid;
   aid;
   Course:course = new course();
-  constructor(private courseService:CourseService, private trainerService:TrainerService, private viewService: ViewService, private submissionService: SubmissionService, private locationService: LocationService, private courseCount: CoursecountService) {
+  constructor(private logger: NGXLogger,private courseService:CourseService, private trainerService:TrainerService, private viewService: ViewService, private submissionService: SubmissionService, private locationService: LocationService, private courseCount: CoursecountService) {
     if(localStorage.getItem('welcome')=='true' && localStorage.getItem("loginStatus")=='true') {
     alert("Welcome "+ this.uname);
     localStorage.setItem('welcome','false');  
@@ -61,14 +62,20 @@ export class AssessmentComponent implements OnInit {
       observables2.push(this.submissionService.getSumOfWeights({aid:"",uid:this.uid,cid:acourse.cid}));
     }
     forkJoin(observables).subscribe(data => {
+      this.logger.info("Get Total Sum Of Weights Event.");
       this.totalWeight = data;
       forkJoin(observables2).subscribe(data => {
+        this.logger.info("Get Submission Sum Of Weights Event.");
         let i = 0;
         data.forEach((weight) => {
           this.scoresmap.set(courseArray[i]["cid"],(weight["body"]/this.totalWeight[i])*100);
           i++;
         })
+      },err=>{
+        this.logger.error("Error : "+err);
       });
+    },err=>{
+      this.logger.error("Error : "+err);
     });
   }
 
@@ -80,7 +87,10 @@ export class AssessmentComponent implements OnInit {
       let courseArray = data as course[];
       for(let acourse of courseArray) {
         this.trainerService.findTrainer({tid:acourse["tid"],tname:'',designation:'',specialities:'',email:''}).subscribe(trainersdata => { 
+          this.logger.info("Find Trainer Event.");
           this.trainersmap.set(acourse["tid"],{"tname":trainersdata["tname"],"designation":trainersdata["designation"]});
+        },err=>{
+          this.logger.error("Error : "+err);
         });
         let observables = new Array();
         this.viewService.getAssignmentsById({aid:"",question:null,asstype:"",cid:acourse["cid"],weight:""}).subscribe(data => {
@@ -94,6 +104,7 @@ export class AssessmentComponent implements OnInit {
             } 
           
           forkJoin(observables).subscribe(data => {
+            this.logger.info("Get Submission By Id Event.");
             let submitted = 0;
             let total = 0;
             data.forEach((element)=>{
@@ -106,9 +117,13 @@ export class AssessmentComponent implements OnInit {
             }
           })
         }
+        },err=>{
+          this.logger.error("Error : "+err);
         });
       }
       this.getSumOfWeights(courseArray);
+    },err=>{
+      this.logger.error("Error : "+err);
     });
   }
 
@@ -117,15 +132,20 @@ export class AssessmentComponent implements OnInit {
     const temp = {};
     this.Course.location = this.searchstring;
     this.courseService.checkLocation(this.Course).subscribe(data=>{
+      this.logger.info("Check Location Event.");
       if(data==1) {
         this.locationService.incrementCount(this.Course.location).subscribe(data=>{});
       }
+    },err=>{
+      this.logger.error("Error : "+err);
     });
-    console.log(this.searchstring);
     this.courseService.getCourseByName(this.searchstring).subscribe(data=> {
+      this.logger.info("Get Course By Name Event.");
       if(data!=null) {
         this.courseCount.increment({id:"",cid:data["cid"],count:""}).subscribe(data=>{});
       }
+    },err=>{
+      this.logger.error("Error : "+err);
     });
 
     const reg = new RegExp(this.searchstring.toLowerCase());
@@ -148,8 +168,11 @@ export class AssessmentComponent implements OnInit {
   deleteCourse(id) {
     let courseObj = {cid:id,cname:"",cdescription:"",skills:"",prerequisites:"",tid:"",last_updated:"",score:""}
     this.courseService.deleteCourse(courseObj).subscribe(data => {
+      this.logger.info("Course Delete Event.");
       alert("Course deleted successfully.");
       location.reload();
+    },err=>{
+      this.logger.error("Error : "+err);
     });
   }
 
@@ -179,8 +202,11 @@ export class AssessmentComponent implements OnInit {
       this.ngOnInit();
     }
     this.courseService.ratingTrend().subscribe(data => {
+      this.logger.info("Rating trend Event.");
       this.courses = data;
       this.tempcourses = data;
+    },err=>{
+      this.logger.error("Error : "+err);
     });
 }
 
@@ -197,6 +223,7 @@ export class AssessmentComponent implements OnInit {
 
   locationTrend() {
     this.locationService.getLocations().subscribe(data=> {
+      this.logger.info("Get Locations event.");
       let locationArray = data as string[];
       this.tempcourses = [];
       let observables = new Array(); 
@@ -204,18 +231,24 @@ export class AssessmentComponent implements OnInit {
         observables.push(this.courseService.getCoursesByLocation(locationArray[i]));
       }
       forkJoin(observables).subscribe(data => {
+        this.logger.info("Get Course By Location Event.");
         for(let courseArrayData of data) {
         let courseArray = courseArrayData as course[];
         for(let course of courseArray) {
           this.tempcourses.push(course);
         }
       }
+      },err=>{
+        this.logger.error("Error : "+err);
       });
+    },err=>{
+      this.logger.error("Error : "+err);
     });
   }
 
   courseTrend() {
     this.courseCount.getAllCourses().subscribe(data => {
+      this.logger.info("Get All Courses Event.");
       this.tempcourses = [];
       let courseCountArray = data as coursecount[];
       let observables = new Array();
@@ -224,6 +257,8 @@ export class AssessmentComponent implements OnInit {
       }
       forkJoin(observables).subscribe(data => {
         this.tempcourses = data;
+      },err=>{
+        this.logger.error("Error : "+err);
       });
     })
   }

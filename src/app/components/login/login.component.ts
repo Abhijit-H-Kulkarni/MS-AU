@@ -62,6 +62,7 @@ export class LoginComponent implements OnInit {
   signInGoogle(platform:string) {
     platform = GoogleLoginProvider.PROVIDER_ID;
     this.socioAuthServ.signIn(platform).then((response) => {
+      this.logger.info("Google sign in Event.");
       this.user = response;
       if(response.email.match("[a-zA-Z ]*.[a-zA-Z ]*@accoliteindia.com")!=null) {
       localStorage.setItem('loginStatus', 'true');
@@ -71,17 +72,27 @@ export class LoginComponent implements OnInit {
       // Successfull Login
       if(response.id!=null)
         this.loginService.findUser({email:response.email,uname:response.firstName,psw:""}).subscribe(data => {
+          this.logger.info("Find User Event.");
           // Perform validation
-          if(data==null)
+          if(data==null) {
+            this.logger.info("New Password Event.");
             location.href="/password";
+          }
           else {
+            this.logger.info("Assessment page.");
             localStorage.setItem('uid', data["uid"]);
             location.href="/assessment";
           }
+        }, err=> {
+          this.logger.error("Error : "+err);
         });
       }
-      else
+      else {
+        this.logger.info("Invalid email.");
         alert("Please use your accolite mail to login.")
+      }
+    },err=>{
+      this.logger.error("Error : "+err);
     });
   }
 

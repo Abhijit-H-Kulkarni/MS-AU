@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ViewService } from 'src/app/view.service';
 import { CourseService } from 'src/app/course.service';
 import { assignment } from '../view/assignment';
+import { NGXLogger } from 'ngx-logger';
 
 @Component({
   selector: 'app-addassignment',
@@ -11,7 +12,7 @@ import { assignment } from '../view/assignment';
 export class AddassignmentComponent implements OnInit {
 
   assignment = {question:null,asstype:'',weight:'',cid:''}
-  constructor(private viewService: ViewService, private courseService: CourseService) { }
+  constructor(private logger: NGXLogger,private viewService: ViewService, private courseService: CourseService) { }
   courses:any;
   ngOnInit(): void {
     this.courseService.getCourses().subscribe(data=> {
@@ -32,8 +33,11 @@ export class AddassignmentComponent implements OnInit {
     uploadData.append('weight', this.assignment.weight);
     uploadData.append('cid', this.assignment.cid);
     this.viewService.addAssignment(uploadData).subscribe(data => {
+      this.logger.info("Add Assignment Event.");
       alert("Assignment added successfully.");
       location.reload();
+    },err=> {
+      this.logger.error("Error : "+err);
     });
     }
   }
@@ -43,6 +47,7 @@ export class AddassignmentComponent implements OnInit {
   }
 
   handleFileInput(files: FileList) {
+    this.logger.info("Handle file input Event.");
     this.assignment.question = files.item(0);
   }
 }

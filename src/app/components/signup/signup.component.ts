@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/login.service';
 import { Encryption } from '../encryption/encryption';
+import { NGXLogger } from 'ngx-logger';
 
 
 @Component({
@@ -10,7 +11,7 @@ import { Encryption } from '../encryption/encryption';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
-  constructor(private router: Router, private loginService:LoginService) { }
+  constructor(private logger: NGXLogger,private router: Router, private loginService:LoginService) { }
 
   user_info = {email:'', uname:'', psw:''};
   
@@ -19,7 +20,11 @@ export class SignupComponent implements OnInit {
     if(this.user_info.email!='' && this.user_info.psw!='' && this.user_info.uname!='') {
        let encryptionObj:Encryption = new Encryption();
        this.user_info.psw = encryptionObj.encrypt(this.user_info.psw);
-       this.loginService.createUser(this.user_info).subscribe(data => console.log(data), error => console.log(error));
+       this.loginService.createUser(this.user_info).subscribe(data => {
+         this.logger.info("Create User Event.")
+       },err=> {
+        this.logger.error("Error : "+err);
+      });
        this.router.navigateByUrl('/login');
     }
     else

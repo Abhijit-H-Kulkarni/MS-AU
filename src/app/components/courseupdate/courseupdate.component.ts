@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CourseService } from 'src/app/course.service';
 import { TrainerService } from 'src/app/trainer.service';
+import { NGXLogger } from 'ngx-logger';
 
 @Component({
   selector: 'app-courseupdate',
@@ -12,7 +13,7 @@ export class CourseupdateComponent implements OnInit {
   course = {cid:'',cname:'',cdescription:'',skills:'',prerequisites:'',location:'',tid:'',last_updated:'',score:''};
   trainers:any;
   
-  constructor(private courseService: CourseService, private trainerService: TrainerService) { }
+  constructor(private logger: NGXLogger,private courseService: CourseService, private trainerService: TrainerService) { }
 
   ngOnInit(): void {
     if(localStorage.getItem("loginStatus")!='true')
@@ -28,20 +29,25 @@ export class CourseupdateComponent implements OnInit {
       this.course.cid = localStorage.getItem("updatecid");
     }
     this.courseService.getCourseById(this.course).subscribe(data => {
-      console.log(this.course);
+      this.logger.info("Get Course By Id.");
       this.course.cname = data["cname"];
       this.course.cdescription = data["cdescription"];
       this.course.skills = data["skills"];
       this.course.prerequisites = data["prerequisites"];
       this.course.location = data["location"];
       this.course.tid = data["tid"];
+    },err=>{
+      this.logger.error("Error : "+err);
     });
   }
   updatecourse(event:Event) {
     event.preventDefault();
     this.courseService.updateCourse(this.course).subscribe(data => {
+      this.logger.info("Update Course Event.");
       alert("Course Updated Successfully.");
       location.reload();
+    },err=>{
+      this.logger.error("Error : "+err);
     });
   }
 
