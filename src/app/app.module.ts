@@ -15,6 +15,7 @@ import { CourseupdateComponent } from './components/courseupdate/courseupdate.co
 import { ViewComponent } from './components/view/view.component';
 import { AddassignmentComponent } from './components/addassignment/addassignment.component';
 import { AddtrainerComponent } from './components/addtrainer/addtrainer.component';
+import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
 
 const GOOGLE_OATH_CLIENT_ID:string = "1075983856302-bqaqclitjpnbo427r9mhismdd02bf6q2.apps.googleusercontent.com";
 
@@ -39,6 +40,7 @@ let config = new AuthServiceConfig([
     AddtrainerComponent
   ],
   imports: [
+    LoggerModule.forRoot({serverLoggingUrl: '/api/logs', level: NgxLoggerLevel.DEBUG, serverLogLevel: NgxLoggerLevel.ERROR}),
     BrowserModule,
     AppRoutingModule,
     FormsModule,

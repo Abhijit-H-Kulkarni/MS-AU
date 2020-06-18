@@ -3,6 +3,7 @@ import { AuthService, GoogleLoginProvider } from "angularx-social-login"
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/login.service';
 import { Encryption } from '../encryption/encryption';
+import { NGXLogger } from 'ngx-logger';
 
 
 @Component({
@@ -14,8 +15,7 @@ export class LoginComponent implements OnInit {
   user:any;
   user_info = {email:'', uname:'', psw:''};
 
-  constructor(private socioAuthServ:AuthService, private router: Router, private loginService:LoginService) {
-    console.log("in constructor");
+  constructor(private logger: NGXLogger,private socioAuthServ:AuthService, private router: Router, private loginService:LoginService) {
     
     if(localStorage.getItem('loginStatus')=='true')
       location.href="/assessment";
@@ -24,15 +24,20 @@ export class LoginComponent implements OnInit {
   login(event: Event) {
     let encryptionObj:Encryption = new Encryption();
     let enpsw = encryptionObj.encrypt(this.user_info.psw);
+    this.logger.info("Login Event.");
     if(this.user_info.email=="" || this.user_info.psw=="") 
       alert("Invalid input. Please enter all the fields properly.")
     else {
     this.loginService.findUser({email:this.user_info.email,uname:"",psw:enpsw}).subscribe(data => {
-      if(data==null)
+      if(data==null) {
         alert("You aren't a registered user.")
+        this.logger.info("User not found.");
+      }
       else {
-        if(enpsw != data["psw"])
+        if(enpsw != data["psw"]) {
           alert("Email and password do not match. Please try again.")
+          this.logger.info("Incorrect credentials.");
+        }
         else {
           this.user_info.uname = data["uname"];
           localStorage.setItem('loginStatus', 'true');
@@ -44,10 +49,12 @@ export class LoginComponent implements OnInit {
             localStorage.setItem("isadmin","false");
           localStorage.setItem('welcome','true');
           location.href="/assessment";
+          this.logger.info("Successful Login.");
         }
       }
     }, err => {
       alert("Login failed.");
+      this.logger.error("Unable to fetch data. Error : "+err);
     });
   }
   }
