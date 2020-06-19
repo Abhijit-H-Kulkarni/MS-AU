@@ -19,19 +19,19 @@
           <img src="../assets/logo.jpg" alt="Logo" style="width:150px;height:30px;">
         </a>
       </li>
-      <li *ngIf="loginStatus=='true'" class="nav-item">
+      <li *ngIf="loginStatus=='true'" class="nav-item" id="home">
         <a href="/assessment"><i class="fas fa-home"> </i>Home</a>
       </li>
-      <li *ngIf="loginStatus=='true' && isAdmin" class="nav-item">
+      <li *ngIf="loginStatus=='true' && isAdmin" class="nav-item" id="addcourse">
         <a href="/addcourse"><i class="fas fa-book"></i> Add Course</a>
       </li>
-      <li *ngIf="loginStatus=='true' && isAdmin" class="nav-item">
+      <li *ngIf="loginStatus=='true' && isAdmin" class="nav-item" id="addassignment">
         <a href="/addassignment"><i class="fas fa-tasks"></i> Add Assignment</a>
       </li>
-      <li *ngIf="loginStatus=='true' && isAdmin" class="nav-item">
+      <li *ngIf="loginStatus=='true' && isAdmin" class="nav-item" id="addtrainer">
         <a href="/addtrainer"><i class="fas fa-user-plus"></i> Add Trainer</a>
       </li>
-      <li *ngIf="loginStatus=='true' && isAdmin" class="nav-item" class="nav-item">
+      <li *ngIf="loginStatus=='true' && isAdmin" class="nav-item" class="nav-item" id="addadmin">
         <a href="/signup"><i class="fas fa-user"></i> Add Admin</a>
       </li>
       <li class="nav-item" *ngIf="loginStatus=='false' || loginStatus==null" id="login">
