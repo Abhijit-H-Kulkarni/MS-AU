@@ -11,16 +11,17 @@ import { NGXLogger } from 'ngx-logger';
 export class CourseupdateComponent implements OnInit {
 
   course = {cid:'',cname:'',cdescription:'',skills:'',prerequisites:'',location:'',tid:'',last_updated:'',score:''};
+  email:string;
   trainers:any;
   
   constructor(private logger: NGXLogger,private courseService: CourseService, private trainerService: TrainerService) { }
 
   ngOnInit(): void {
     if(localStorage.getItem("loginStatus")!='true')
-      location.href="/login";
+      location.href="/";
 
     if(localStorage.getItem("isadmin")!='true')
-      location.href="/assessment";
+      location.href="/";
      
     this.trainerService.getTrainers().subscribe(data => {
       this.trainers = data;
@@ -40,6 +41,7 @@ export class CourseupdateComponent implements OnInit {
       this.logger.error("Error : "+err);
     });
   }
+
   updatecourse(event:Event) {
     event.preventDefault();
     this.courseService.updateCourse(this.course).subscribe(data => {
@@ -49,6 +51,11 @@ export class CourseupdateComponent implements OnInit {
     },err=>{
       this.logger.error("Error : "+err);
     });
+  }
+
+  assignFaculty(event:Event,email) {
+    event.preventDefault();
+    this.email = email;
   }
 
   goBack() {
