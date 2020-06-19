@@ -15,7 +15,7 @@ export class AddassignmentComponent implements OnInit {
   constructor(private logger: NGXLogger,private viewService: ViewService, private courseService: CourseService) { }
   courses:any;
   tempcourses:any;
-  searchstring:string;
+  searchstring:string="";
 
   ngOnInit(): void {
     this.courseService.getCourses().subscribe(data=> {
@@ -56,7 +56,7 @@ export class AddassignmentComponent implements OnInit {
       const temp = {};
       const reg = new RegExp(this.searchstring.toLowerCase());
       for (const key in this.courses) {
-        if(reg.test(this.courses[key].tname.toLowerCase())) {
+        if(reg.test(this.courses[key].cname.toLowerCase())) {
           temp[key] = this.courseService[key];;
         }
       }
