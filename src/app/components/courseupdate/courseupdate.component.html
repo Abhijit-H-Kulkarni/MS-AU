@@ -9,7 +9,7 @@
                     <h6 style="margin-left: 5%;">Trainer Name : {{ trainer.value.tname }}</h6>
                     <h6 style="margin-left: 5%;">Trainer Designation : {{ trainer.value.designation }}</h6>
                     <h6 style="margin-left: 5%;">Trainer Specialities : {{ trainer.value.specialities }}</h6>
-                    <button type="submit" id="assign" class="btn btn-primary" (click)="assignFaculty($event,trainer.value.email,trainer.course.id)">Assign</button>
+                    <button type="submit" id="assign" class="btn btn-primary" (click)="assignFaculty($event,trainer.value.email,trainer.course.tid)">Assign</button>
                 </div>
             </tr>
         </table>
