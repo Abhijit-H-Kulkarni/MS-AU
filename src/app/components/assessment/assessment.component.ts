@@ -43,7 +43,6 @@ export class AssessmentComponent implements OnInit {
     alert("Welcome "+ this.uname);
     localStorage.setItem('welcome','false');  
     }
-
     if(localStorage.getItem("loginStatus")!='true')
       location.href="/login";
 

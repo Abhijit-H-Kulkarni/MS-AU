@@ -25,10 +25,9 @@
       <li class="nav-item" *ngIf="loginStatus=='true'" id="logout">
         <a class="nav-link" href="/login" (click)="logOut()">Logout</a>
       </li>
-      <li *ngIf="loginStatus=='true'" class="nav-item">
-        <a class="nav-link" href="/assessment"><i class="fas fa-home"></i> Home</a>
-      </li>
-      <li *ngIf="loginStatus=='true' && isAdmin" class="nav-item">
+    </ul>
+    <ul class="nav navbar-nav">
+      <li *ngIf="loginStatus=='true' && isAdmin" class="nav-item" id="addcourse">
         <a class="nav-link" href="/addcourse"><i class="fas fa-book"></i> Add Course</a>
       </li>
       <li *ngIf="loginStatus=='true' && isAdmin" class="nav-item">
