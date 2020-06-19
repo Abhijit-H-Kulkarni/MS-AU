@@ -14,9 +14,13 @@ export class AddassignmentComponent implements OnInit {
   assignment = {question:null,asstype:'',weight:'',cid:''}
   constructor(private logger: NGXLogger,private viewService: ViewService, private courseService: CourseService) { }
   courses:any;
+  tempcourses:any;
+  searchstring:string;
+
   ngOnInit(): void {
     this.courseService.getCourses().subscribe(data=> {
       this.courses = data;
+      this.tempcourses = data;
     })
   }
 
@@ -40,6 +44,26 @@ export class AddassignmentComponent implements OnInit {
       this.logger.error("Error : "+err);
     });
     }
+  }
+
+  assignCourse(event:Event,cname,cid) {
+    this.assignment.cid = cid;
+    alert("Assignment added to course "+cname);
+  }
+
+  search() {
+    if(this.searchstring!="") {
+      const temp = {};
+      const reg = new RegExp(this.searchstring.toLowerCase());
+      for (const key in this.courses) {
+        if(reg.test(this.courses[key].tname.toLowerCase())) {
+          temp[key] = this.courseService[key];;
+        }
+      }
+      this.tempcourses = temp;
+    }
+    else
+      this.ngOnInit();
   }
 
   goBack() {
