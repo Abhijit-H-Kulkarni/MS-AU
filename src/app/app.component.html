@@ -36,9 +36,6 @@
       <li *ngIf="loginStatus=='true' && isAdmin" class="nav-item">
         <a class="nav-link" href="/addtrainer"><i class="fas fa-user-plus"></i> Add Trainer</a>
       </li>
-      <li *ngIf="loginStatus=='true' && isAdmin" class="nav-item" class="nav-item">
-        <a class="nav-link" href="/signup"><i class="fas fa-user"></i> Add Admin</a>
-      </li>
     </ul>
   </nav>
   <h1 class="text" *ngIf="(loginStatus=='false' || loginStatus==null) && logoDisplayStatus">Welcome to <br/>MS-AU<br/> Management <br/>Portal</h1>

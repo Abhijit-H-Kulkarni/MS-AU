@@ -13,6 +13,8 @@ export class CourseupdateComponent implements OnInit {
   course = {cid:'',cname:'',cdescription:'',skills:'',prerequisites:'',location:'',tid:'',last_updated:'',score:''};
   email:string;
   trainers:any;
+  temptrainers;
+  searchstring:string;
   
   constructor(private logger: NGXLogger,private courseService: CourseService, private trainerService: TrainerService) { }
 
@@ -25,6 +27,7 @@ export class CourseupdateComponent implements OnInit {
      
     this.trainerService.getTrainers().subscribe(data => {
       this.trainers = data;
+      this.temptrainers = this.trainers;
     });
     if(localStorage.getItem("updatecid")!=null) {
       this.course.cid = localStorage.getItem("updatecid");
@@ -44,6 +47,9 @@ export class CourseupdateComponent implements OnInit {
 
   updatecourse(event:Event) {
     event.preventDefault();
+    if(this.course.cid=="" ||this.course.cdescription=="" ||this.course.tid=="" ||this.course.cname=="" ||this.course.location=="" ||this.course.score=="" ||this.course.skills=="" ||this.course.prerequisites=="")
+      alert("All the fields are mandatory.")
+    else {
     this.courseService.updateCourse(this.course).subscribe(data => {
       this.logger.info("Update Course Event.");
       alert("Course Updated Successfully.");
@@ -51,6 +57,7 @@ export class CourseupdateComponent implements OnInit {
     },err=>{
       this.logger.error("Error : "+err);
     });
+    }
   }
 
   assignFaculty(event:Event,email,id,name) {
@@ -64,4 +71,16 @@ export class CourseupdateComponent implements OnInit {
     location.href="/assessment";
   }
 
+  search() {
+    if(this.searchstring!="") {
+      const temp = {};
+      const reg = new RegExp(this.searchstring.toLowerCase());
+      for (const key in this.trainers) {
+        if(reg.test(this.trainers[key].tname.toLowerCase())) {
+          temp[key] = this.trainers[key];;
+        }
+      }
+      this.temptrainers = temp;
+    }
+  }
 }
