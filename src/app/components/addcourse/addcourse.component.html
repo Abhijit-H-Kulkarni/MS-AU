@@ -23,27 +23,27 @@
     <h5>Please enter the course details :</h5>
     <form action="#" class="was-validated" autocomplete='off'>
         <div class="form-group">
-            <label for="cname">Course Name:<sup style="color: red;">*</sup></label>
+            <label for="cname">Course Name<sup style="color: red;">*</sup> :</label>
             <input type="text" class="form-control" id="cname" [(ngModel)]="course.cname" placeholder="Enter Course Title" name="cname" required>
         </div>
         <div class="form-group">
-            <label for="cdescription">Course Description:<sup style="color: red;">*</sup></label>
+            <label for="cdescription">Course Description<sup style="color: red;">*</sup> :</label>
             <input type="text" class="form-control" id="cdescription" [(ngModel)]="course.cdescription" placeholder="Enter Course Description" name="cdescription" required>
         </div>
         <div class="form-group">
-            <label for="skills">Skills:<sup style="color: red;">*</sup></label>
+            <label for="skills">Skills<sup style="color: red;">*</sup> :</label>
             <input type="text" class="form-control" id="skills" [(ngModel)]="course.skills" placeholder="Enter Skills" name="skills" required>
         </div>
         <div class="form-group">
-            <label for="prerequisites">Prerequisites:<sup style="color: red;">*</sup></label>
+            <label for="prerequisites">Prerequisites<sup style="color: red;">*</sup> :</label>
             <input type="text" class="form-control" id="prerequisites" [(ngModel)]="course.prerequisites" placeholder="Enter Prerequisites" name="prerequisites" required>
         </div>
         <div class="form-group">
-            <label for="prerequisites">Location:<sup style="color: red;">*</sup></label>
+            <label for="prerequisites">Location<sup style="color: red;">*</sup> :</label>
             <input type="text" class="form-control" id="location" [(ngModel)]="course.location" placeholder="Enter Location" name="location" required>
         </div>
         <div class="form-group">
-            <label for="tid">Trainer ID:<sup style="color: red;">*</sup></label>
+            <label for="tid">Trainer ID<sup style="color: red;">*</sup> :</label>
             <input type="number" class="form-control" id="tid" [(ngModel)]="course.tid" placeholder="Enter Trainer ID" name="tid" required>
         </div>
         <button type="submit" id="submit" class="btn btn-primary" id="submit" (click)="addcourse($event)">Add <i class="fas fa-plus-circle"></i></button><br/>
