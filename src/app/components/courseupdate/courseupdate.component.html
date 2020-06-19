@@ -1,7 +1,7 @@
-<input class="form-control" [(ngModel)]="searchstring" type="text" id="searchbox" name="searchbox" placeholder="Search Trainer" (change)="search()" autocomplete="off">
+<input class="form-control" [(ngModel)]="searchstring" type="text" id="searchbox" name="searchbox" placeholder="Search Trainer" (ngModelChange)="search()" autocomplete="off">
 <div class="trainers">
     <h5>Here is the list of Trainers :</h5>
-    <div class="overflow-auto " style="max-height:350px;margin-top: 20px;" id="trainerlist">
+    <div class="overflow-auto " style="max-height:400px;margin-top: 20px;" id="trainerlist">
         <table  class="table table-hover table-sm">
             <tr *ngFor="let trainer of temptrainers | keyvalue">
                 <div class="trainer">

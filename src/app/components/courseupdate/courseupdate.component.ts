@@ -82,5 +82,7 @@ export class CourseupdateComponent implements OnInit {
       }
       this.temptrainers = temp;
     }
+    else
+      this.ngOnInit();
   }
 }
