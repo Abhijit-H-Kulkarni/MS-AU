@@ -12,7 +12,7 @@
 }
 
 #trainerlist {
-    width:600px;
+    width:660px;
 }
 .addcourse {
     width:40%;
@@ -33,3 +33,14 @@
     width:30%;
 }
 
+#assign {
+    float:right;
+    margin-top: -13%;
+    margin-right: 3%;
+}
+
+#searchbox {
+    width: 660px;
+    margin-left: 28%;
+    margin-top: 2%;
+}

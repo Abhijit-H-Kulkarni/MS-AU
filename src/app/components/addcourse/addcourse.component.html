@@ -1,15 +1,17 @@
+<input class="form-control" [(ngModel)]="searchstring" type="text" id="searchbox" name="searchbox" placeholder="Search Trainer" (ngModelChange)="search()" autocomplete="off">
+
 <div class="trainers">
     <h5>Here is the list of Trainers :</h5>
-    <div class="overflow-auto " style="max-height: 475px;margin-top: 20px;" id="trainerlist">
+    <div class="overflow-auto " style="max-height: 440px;margin-top: 20px;" id="trainerlist">
         <table  class="table table-hover table-sm">
             <tr *ngFor="let trainer of trainers | keyvalue">
                 <div class="trainer">
                     <br/>
-                    <h5 style="margin-left: 5%;">Trainer ID : {{ trainer.value.tid }}</h5>
-                    <h6 style="margin-left: 5%;">Trainer Name : {{ trainer.value.tname }}</h6>
+                    <h5 style="margin-left: 5%;">Trainer Name : {{ trainer.value.tname }}</h5>
+                    <h6 style="margin-left: 5%;">Trainer Email : {{ trainer.value.email }}</h6>
                     <h6 style="margin-left: 5%;">Trainer Designation : {{ trainer.value.designation }}</h6>
                     <h6 style="margin-left: 5%;">Trainer Specialities : {{ trainer.value.specialities }}</h6>
-                    <h6 style="margin-left: 5%;">Trainer Email : {{ trainer.value.email }}</h6>
+                    <button type="submit" id="assign" class="btn btn-primary" (click)="assignFaculty($event,trainer.value.email,trainer.value.tid,trainer.value.tname)">Assign</button>
                 </div>
             </tr>
         </table>
@@ -41,10 +43,6 @@
         <div class="form-group">
             <label for="prerequisites">Location<sup style="color: red;">*</sup> :</label>
             <input type="text" class="form-control" id="location" [(ngModel)]="course.location" placeholder="Enter Location" name="location" required>
-        </div>
-        <div class="form-group">
-            <label for="tid">Trainer ID<sup style="color: red;">*</sup> :</label>
-            <input type="number" class="form-control" id="tid" [(ngModel)]="course.tid" placeholder="Enter Trainer ID" name="tid" required>
         </div>
         <button type="submit" id="submit" class="btn btn-primary" id="submit" (click)="addcourse($event)">Add <i class="fas fa-plus-circle"></i></button><br/>
     </form>

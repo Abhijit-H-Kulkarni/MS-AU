@@ -12,6 +12,8 @@ export class AddcourseComponent implements OnInit {
 
   course = {cid:'',cname:'',cdescription:'',skills:'',prerequisites:'',location:'',tid:'',last_updated:'',rating:''};
   trainers:any;
+  temptrainers;
+  searchstring:string;
 
   constructor(private logger: NGXLogger,private courseService: CourseService, private trainerService: TrainerService) { }
 
@@ -24,6 +26,7 @@ export class AddcourseComponent implements OnInit {
       
     this.trainerService.getTrainers().subscribe(data => {
       this.trainers = data;
+      this.temptrainers = data;
     });
   }
 
@@ -40,5 +43,20 @@ export class AddcourseComponent implements OnInit {
 
   goBack() {
     location.href="/assessment";
+  }
+
+  search() {
+    if(this.searchstring!="") {
+      const temp = {};
+      const reg = new RegExp(this.searchstring.toLowerCase());
+      for (const key in this.trainers) {
+        if(reg.test(this.trainers[key].tname.toLowerCase())) {
+          temp[key] = this.trainers[key];;
+        }
+      }
+      this.temptrainers = temp;
+    }
+    else
+      this.ngOnInit();
   }
 }
