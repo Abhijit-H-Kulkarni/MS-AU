@@ -53,9 +53,10 @@ export class CourseupdateComponent implements OnInit {
     });
   }
 
-  assignFaculty(event:Event,email) {
+  assignFaculty(event:Event,email,id) {
     event.preventDefault();
     this.email = email;
+    this.course.tid = id;
   }
 
   goBack() {
