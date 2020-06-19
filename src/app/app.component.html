@@ -27,8 +27,8 @@
       </li>
     </ul>
     <ul class="nav navbar-nav">
-      <li *ngIf="loginStatus=='true'" class="nav-item" >
-        <a href="/assessment" id="home"><i class="fas fa-home"></i> Home</a>
+      <li *ngIf="loginStatus=='true'" id="home" class="nav-item" >
+        <a href="/assessment"><i class="fas fa-home"></i> Home</a>
       </li>
       <li *ngIf="loginStatus=='true' && isAdmin" class="nav-item" id="addcourse">
         <a href="/addcourse"><i class="fas fa-book"></i> Add Course</a>
