@@ -27,19 +27,19 @@
       </li>
     </ul>
     <ul class="nav navbar-nav">
-      <li *ngIf="loginStatus=='true'" id="home" class="nav-item" >
+      <li *ngIf="loginStatus=='true'" class="nav-item" id="home">
         <a class="nav-link" href="/assessment"><i class="fas fa-home"></i> Home</a>
       </li>
-      <li *ngIf="loginStatus=='true' && isAdmin" class="nav-item" id="addcourse">
+      <li *ngIf="loginStatus=='true' && isAdmin" class="nav-item">
         <a class="nav-link" href="/addcourse"><i class="fas fa-book"></i> Add Course</a>
       </li>
-      <li *ngIf="loginStatus=='true' && isAdmin" class="nav-item" id="addassignment">
+      <li *ngIf="loginStatus=='true' && isAdmin" class="nav-item">
         <a class="nav-link" href="/addassignment"><i class="fas fa-tasks"></i> Add Assignment</a>
       </li>
-      <li *ngIf="loginStatus=='true' && isAdmin" class="nav-item" id="addtrainer">
+      <li *ngIf="loginStatus=='true' && isAdmin" class="nav-item">
         <a class="nav-link" href="/addtrainer"><i class="fas fa-user-plus"></i> Add Trainer</a>
       </li>
-      <li *ngIf="loginStatus=='true' && isAdmin" class="nav-item" class="nav-item" id="addadmin">
+      <li *ngIf="loginStatus=='true' && isAdmin" class="nav-item" class="nav-item">
         <a class="nav-link" href="/signup"><i class="fas fa-user"></i> Add Admin</a>
       </li>
     </ul>
