@@ -50,29 +50,3 @@
         </table>
     </div>
 </div>
-
-<div class="fab-container" *ngIf="isAdmin">
-    <div class="fab fab-icon-holder">
-        <i class="fas fa-plus"></i>
-    </div>
-    <ul class="fab-options">
-        <li>
-            <span class="fab-label">Add Trainer</span>
-            <div class="fab-icon-holder" (click)="addTrainer()">
-                <i class="fas fa-user-plus"></i>
-            </div>
-        </li>
-        <li>
-            <span class="fab-label">Add Course</span>
-            <div class="fab-icon-holder" (click)="addCourse()">
-                <i class="fas fa-book"></i>
-            </div>
-        </li>
-        <li>
-            <span class="fab-label">Add Assignment</span>
-            <div class="fab-icon-holder" (click)="addAssignment()">
-                <i class="fas fa-tasks"></i>
-            </div>
-        </li>
-    </ul>
-</div>

@@ -13,6 +13,7 @@ export class AppComponent {
   
   logoDisplayStatus:Boolean;
   loginStatus:string;
+  isAdmin:boolean;
   title="MS-AU Management Portal";
   constructor(private socioAuthServ:AuthService, @Inject(DOCUMENT) private document: Document) {
     this.loginStatus = localStorage.getItem('loginStatus');
@@ -21,6 +22,11 @@ export class AppComponent {
       this.logoDisplayStatus = true;
     else
       this.logoDisplayStatus = false;
+    
+    if(localStorage.getItem("isadmin")=="true")
+      this.isAdmin = true;
+    else
+      this.isAdmin = false;
   }
   ngOnInit(): void {}
 

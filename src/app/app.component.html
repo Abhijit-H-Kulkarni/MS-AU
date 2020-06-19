@@ -19,6 +19,21 @@
           <img src="../assets/logo.jpg" alt="Logo" style="width:150px;height:30px;">
         </a>
       </li>
+      <li *ngIf="loginStatus=='true'" class="navbar-brand" href="/assessment" class="nav-item">
+        <a>Home</a>
+      </li>
+      <li *ngIf="loginStatus=='true' && isAdmin" class="navbar-brand" href="/addcourse" class="nav-item">
+        <a><i class="fas fa-book"></i> Add Course</a>
+      </li>
+      <li *ngIf="loginStatus=='true' && isAdmin" class="navbar-brand" href="/addassignment" class="nav-item">
+        <a><i class="fas fa-tasks"></i> Add Assignment</a>
+      </li>
+      <li *ngIf="loginStatus=='true' && isAdmin" class="navbar-brand" href="/addtrainer" class="nav-item">
+        <a><i class="fas fa-user-plus"></i> Add Trainer</a>
+      </li>
+      <li *ngIf="loginStatus=='true' && isAdmin" class="navbar-brand" href="/signup" class="nav-item">
+        <a><i class="fas fa-user-plus"></i> Add Admin</a>
+      </li>
       <li class="nav-item" *ngIf="loginStatus=='false' || loginStatus==null" id="login">
         <a class="nav-link" href="/login">Login</a>
       </li>

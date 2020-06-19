@@ -176,18 +176,6 @@ export class AssessmentComponent implements OnInit {
     });
   }
 
-  addTrainer() {
-    location.href="/addtrainer";
-  }
-
-  addCourse() {
-    location.href="/addcourse";
-  }
-
-  addAssignment() {
-    location.href="/addassignment";
-  }
-
   view(id) {
     localStorage.setItem("cid",id);
     location.href = "/view";
