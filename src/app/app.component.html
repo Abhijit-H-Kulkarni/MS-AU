@@ -19,8 +19,16 @@
           <img src="../assets/logo.jpg" alt="Logo" style="width:150px;height:30px;">
         </a>
       </li>
-      <li *ngIf="loginStatus=='true'" class="nav-item" id="home">
-        <a href="/assessment"><i class="fas fa-home"> Home</i></a>
+      <li class="nav-item" *ngIf="loginStatus=='false' || loginStatus==null" id="login">
+        <a class="nav-link" href="/login">Login</a>
+      </li>
+      <li class="nav-item" *ngIf="loginStatus=='true'" id="logout">
+        <a class="nav-link" href="/login" (click)="logOut()">Logout</a>
+      </li>
+    </ul>
+    <ul class="nav navbar-nav">
+      <li *ngIf="loginStatus=='true'" class="nav-item" >
+        <a href="/assessment" id="home"><i class="fas fa-home"></i> Home</a>
       </li>
       <li *ngIf="loginStatus=='true' && isAdmin" class="nav-item" id="addcourse">
         <a href="/addcourse"><i class="fas fa-book"></i> Add Course</a>
@@ -33,12 +41,6 @@
       </li>
       <li *ngIf="loginStatus=='true' && isAdmin" class="nav-item" class="nav-item" id="addadmin">
         <a href="/signup"><i class="fas fa-user"></i> Add Admin</a>
-      </li>
-      <li class="nav-item" *ngIf="loginStatus=='false' || loginStatus==null" id="login">
-        <a class="nav-link" href="/login">Login</a>
-      </li>
-      <li class="nav-item" *ngIf="loginStatus=='true'" id="logout">
-        <a class="nav-link" href="/login" (click)="logOut()">Logout</a>
       </li>
     </ul>
   </nav>
