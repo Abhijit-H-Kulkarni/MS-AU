@@ -1,6 +1,6 @@
 <div class="trainers">
     <h5>Here is the list of Trainers :</h5>
-    <div class="overflow-auto " style="max-height: 510px;margin-top: 20px;" id="trainerlist">
+    <div class="overflow-auto " style="max-height: 450px;margin-top: 20px;" id="trainerlist">
         <table  class="table table-hover table-sm">
             <tr *ngFor="let trainer of trainers | keyvalue">
                 <div class="trainer">
@@ -9,7 +9,7 @@
                     <h6 style="margin-left: 5%;">Trainer Name : {{ trainer.value.tname }}</h6>
                     <h6 style="margin-left: 5%;">Trainer Designation : {{ trainer.value.designation }}</h6>
                     <h6 style="margin-left: 5%;">Trainer Specialities : {{ trainer.value.specialities }}</h6>
-                    <button type="submit" id="assign" class="btn btn-primary" (click)="assignFaculty($event,trainer.value.email,trainer.value.tid)">Assign</button>
+                    <button type="submit" id="assign" class="btn btn-primary" (click)="assignFaculty($event,trainer.value.email,trainer.value.tid,trainer.value.tname)">Assign</button>
                 </div>
             </tr>
         </table>
@@ -41,10 +41,6 @@
         <div class="form-group">
             <label for="prerequisites">Location<sup style="color: red;">*</sup> :</label>
             <input type="text" class="form-control" id="location" [(ngModel)]="course.location" placeholder="Enter Location" name="location" required>
-        </div>
-        <div class="form-group">
-            <label for="tid">Trainer Email<sup style="color: red;">*</sup> :</label>
-            <input type="text" class="form-control" id="email" [(ngModel)]="email" placeholder="Enter Trainer Email" name="email" required>
         </div>
         <button type="submit" class="btn btn-primary" id="submit" (click)="updatecourse($event)">Update <i style="margin-left: 3%;" id="upicon" class="fas fa-pen"></i></button><br/>
     </form>
