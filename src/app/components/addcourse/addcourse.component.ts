@@ -13,6 +13,7 @@ export class AddcourseComponent implements OnInit {
   course = {cid:'',cname:'',cdescription:'',skills:'',prerequisites:'',location:'',tid:'',last_updated:'',rating:''};
   trainers:any;
   temptrainers;
+  email:string;
   searchstring:string;
 
   constructor(private logger: NGXLogger,private courseService: CourseService, private trainerService: TrainerService) { }
@@ -58,5 +59,11 @@ export class AddcourseComponent implements OnInit {
     }
     else
       this.ngOnInit();
+  }
+  assignFaculty(event:Event,email,id,name) {
+    event.preventDefault();
+    this.email = email;
+    this.course.tid = id;
+    alert("Course successfully assigned to "+name);
   }
 }
