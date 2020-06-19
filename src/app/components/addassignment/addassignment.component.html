@@ -2,7 +2,7 @@
 
 <div class="courses">
     <h5>Here is the list of Courses :</h5>
-    <div class="overflow-auto " style="max-height: 250px;margin-top: 20px;" id="courseslist">
+    <div class="overflow-auto " style="max-height: 250px;margin-top: 40px;" id="courseslist">
         <table  class="table table-hover table-sm">
             <tr *ngFor="let course of courses | keyvalue">
                 <div class="course">
@@ -23,7 +23,7 @@
 <div class="addassignment">
     <h5>Please enter the assignment details :</h5>
     <p>(NOTE : Only image uploads allowed.)</p>
-    <form action="#" class="was-validated" autocomplete='off'>
+    <form action="#" class="was-validated" autocomplete='off' style="margin-top: 20px;">
         <div class="form-group">
             <label for="question">Question<sup style="color: red;">*</sup> :</label><br/>
             <input type="file" id="question" (change)="handleFileInput($event.target.files)">

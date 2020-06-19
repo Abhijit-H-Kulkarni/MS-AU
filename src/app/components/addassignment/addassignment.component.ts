@@ -48,7 +48,7 @@ export class AddassignmentComponent implements OnInit {
 
   assignCourse(event:Event,cname,cid) {
     this.assignment.cid = cid;
-    alert("Assignment added to course "+cname);
+    alert("Assignment assigned to course "+cname);
   }
 
   search() {
@@ -57,7 +57,7 @@ export class AddassignmentComponent implements OnInit {
       const reg = new RegExp(this.searchstring.toLowerCase());
       for (const key in this.courses) {
         if(reg.test(this.courses[key].cname.toLowerCase())) {
-          temp[key] = this.courseService[key];;
+          temp[key] = this.courses[key];
         }
       }
       this.tempcourses = temp;
