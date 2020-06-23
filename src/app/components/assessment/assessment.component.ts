@@ -85,6 +85,7 @@ export class AssessmentComponent implements OnInit {
 
   ngOnInit(): void {
     this.uid = localStorage.getItem("uid");
+    this.tempcourses = null;
     this.courseService.getCourses().subscribe(data => {
       if(this.isTrainer==false) {
       this.courses = data;
