@@ -26,6 +26,7 @@ export class AssessmentComponent implements OnInit {
   courses:any;
   course = {cid:'',cname:'',cdescription:'',skills:'',prerequisites:'',location:'',tid:'',last_updated:'',score:''};
   isAdmin:boolean;
+  isTrainer:boolean;
   totalWeight;
   scoredWeight=0;
   trainersmap = new Map();
@@ -50,6 +51,11 @@ export class AssessmentComponent implements OnInit {
       this.isAdmin = true;
     else
       this.isAdmin = false;
+
+    if(localStorage.getItem("isTrainer")=="true")
+      alert("He is a trainer.");
+    else
+      this.isTrainer = false;
    }
 
 

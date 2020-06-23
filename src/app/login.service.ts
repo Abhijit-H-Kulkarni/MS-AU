@@ -16,5 +16,9 @@ export class LoginService {
 
   findUser(user: object): Observable<object> {  
     return this.http.post(`${this.baseUrl}`+'finduser', user);  
-  }  
+  } 
+  
+  getTrainer(trainer:object): Observable<object> {
+    return this.http.post("https://ms-au-backend.herokuapp.com/trainer/gettrainerbyemail",trainer);
+  }
 }
