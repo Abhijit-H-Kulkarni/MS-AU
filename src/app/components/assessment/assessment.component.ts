@@ -47,11 +47,11 @@ export class AssessmentComponent implements OnInit {
     if(localStorage.getItem("loginStatus")!='true')
       location.href="/login";
 
-    if(localStorage.getItem("isadmin")=="true")
+    if(localStorage.getItem("isadmin")=='true')
       this.isAdmin = true;
     else
       this.isAdmin = false;
-
+    console.log(localStorage.getItem("isTrainer"));
     if(localStorage.getItem("isTrainer")=="true")
       alert("He is a trainer.");
     else
