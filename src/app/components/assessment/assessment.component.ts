@@ -87,6 +87,7 @@ export class AssessmentComponent implements OnInit {
   ngOnInit(): void {
     this.uid = localStorage.getItem("uid");
     this.courseService.getCourses().subscribe(data => {
+      if(this.isTrainer==false) {
       this.courses = data;
       this.tempcourses = data;
       let courseArray = data as course[];
@@ -100,7 +101,6 @@ export class AssessmentComponent implements OnInit {
         let observables = new Array();
         this.viewService.getAssignmentsById({aid:"",question:null,asstype:"",cid:acourse["cid"],weight:""}).subscribe(data => {
           let assignmentArray = data as assignment[];
-          console.log(assignmentArray)
           if(assignmentArray.length==0)
             this.progress.set(acourse["cid"],null);
           else {
@@ -127,7 +127,23 @@ export class AssessmentComponent implements OnInit {
         });
       }
       this.getSumOfWeights(courseArray);
-    },err=>{
+    }
+    else {
+      let courseArray = data as course[];
+      for(let acourse of courseArray) {
+        this.trainerService.findTrainer({tid:acourse["tid"],tname:'',designation:'',specialities:'',email:''}).subscribe(trainersdata => { 
+          this.logger.info("Find Trainer Event.");
+          if(localStorage.getItem("email")==trainersdata["email"]) {
+            this.trainersmap.set(acourse["tid"],{"tname":trainersdata["tname"],"designation":trainersdata["designation"]});
+            this.tempcourses.push(acourse);
+            this.courses.push(acourse);
+          }
+        },err=>{
+          this.logger.error("Error : "+err);
+        });
+      }
+    } 
+  },err=>{
       this.logger.error("Error : "+err);
     });
   }
