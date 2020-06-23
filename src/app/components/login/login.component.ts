@@ -80,6 +80,12 @@ export class LoginComponent implements OnInit {
       if(response.id!=null)
         this.loginService.findUser({email:response.email,uname:response.firstName,psw:""}).subscribe(data => {
           this.logger.info("Find User Event.");
+          this.loginService.getTrainer({tid:"",tname:"",designation:"",specialities:"",email:this.user_info.uname}).subscribe(data=>{
+            if(data!=null)
+              localStorage.setItem("isTrainer","true");
+            else
+              localStorage.setItem("isTrainer","false");
+          });
           // Perform validation
           if(data==null) {
             this.logger.info("New Password Event.");
