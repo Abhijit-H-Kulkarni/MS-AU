@@ -40,7 +40,7 @@ public class TrainerController {
 	}
 	
 	@PostMapping("/gettrainerbyemail")
-	public Optional<Trainer> getTrainerByEmail(Trainer trainer) {
+	public Optional<Trainer> getTrainerByEmail(@RequestBody Trainer trainer) {
 		return trainerRepository.getTrainerByEmail(trainer.getEmail());
 	}
 }
