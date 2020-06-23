@@ -53,7 +53,7 @@ export class AssessmentComponent implements OnInit {
       this.isAdmin = false;
     console.log("Log : "+localStorage.getItem("isTrainer"));
     if(localStorage.getItem("isTrainer")=="true")
-      alert("He is a trainer.");
+      this.isTrainer = true;
     else
       this.isTrainer = false;
    }

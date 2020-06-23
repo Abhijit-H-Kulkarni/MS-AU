@@ -49,14 +49,12 @@ export class LoginComponent implements OnInit {
           else
             localStorage.setItem("isadmin","false");
           this.loginService.getTrainer({tid:"",tname:"",designation:"",specialities:"",email:this.user_info.email}).subscribe(data=>{
-            console.log(data);
             if(data!=null)
               localStorage.setItem("isTrainer","true");
             else
               localStorage.setItem("isTrainer","false");
           });
           localStorage.setItem('welcome','true');
-          // location.href="/assessment";
           this.logger.info("Successful Login.");
         }
       }
