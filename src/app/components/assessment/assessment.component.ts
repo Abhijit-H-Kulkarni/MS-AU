@@ -132,7 +132,6 @@ export class AssessmentComponent implements OnInit {
       for(let acourse of courseArray) {
         this.trainerService.findTrainer({tid:acourse["tid"],tname:'',designation:'',specialities:'',email:''}).subscribe(trainersdata => { 
           this.logger.info("Find Trainer Event.");
-          console.log(trainersdata);
           if(localStorage.getItem("email")==trainersdata["email"]) {
             this.trainersmap.set(acourse["tid"],{"tname":trainersdata["tname"],"designation":trainersdata["designation"]});
             this.tempcourses.push(acourse);
