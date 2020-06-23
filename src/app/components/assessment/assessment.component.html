@@ -11,7 +11,7 @@
 <div class="projects" >
     <h2 style="margin-left: 32%;">Here is the list of courses :</h2>
     <br/>
-    <div *ngIf="tempcourses.size==0">
+    <div *ngIf="tempcourses==null || tempcourses.size()==0">
         <h4>No courses assigned.</h4>
     </div>
     <div class="courses">
