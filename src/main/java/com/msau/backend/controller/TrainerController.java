@@ -38,4 +38,9 @@ public class TrainerController {
 	public void addTrainer(@RequestBody Trainer trainer) {
 		trainerRepository.save(trainer);
 	}
+	
+	@PostMapping("/gettrainerbyemail")
+	public Optional<Trainer> getTrainerByEmail(Trainer trainer) {
+		return trainerRepository.getTrainerByEmail(trainer.getEmail());
+	}
 }
