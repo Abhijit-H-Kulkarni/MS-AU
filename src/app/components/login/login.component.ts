@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem("isadmin","true");
           else
             localStorage.setItem("isadmin","false");
-          this.loginService.getTrainer({tid:"",tname:"",designation:"",specialities:"",email:this.user_info.uname}).subscribe(data=>{
+          this.loginService.getTrainer({tid:"",tname:"",designation:"",specialities:"",email:this.user_info.email}).subscribe(data=>{
             if(data!=null)
               localStorage.setItem("isTrainer","true");
             else
@@ -80,7 +80,7 @@ export class LoginComponent implements OnInit {
       if(response.id!=null)
         this.loginService.findUser({email:response.email,uname:response.firstName,psw:""}).subscribe(data => {
           this.logger.info("Find User Event.");
-          this.loginService.getTrainer({tid:"",tname:"",designation:"",specialities:"",email:this.user_info.uname}).subscribe(data=>{
+          this.loginService.getTrainer({tid:"",tname:"",designation:"",specialities:"",email:this.user.email}).subscribe(data=>{
             if(data!=null)
               localStorage.setItem("isTrainer","true");
             else
