@@ -11,6 +11,9 @@
 <div class="projects" >
     <h2 style="margin-left: 32%;">Here is the list of courses :</h2>
     <br/>
+    <div *ngIf="tempcourses.length==0">
+        <h4>No courses assigned.</h4>
+    </div>
     <div class="courses">
         <table  class="table table-hover table-sm">
             <tr *ngFor="let course of tempcourses | keyvalue">
