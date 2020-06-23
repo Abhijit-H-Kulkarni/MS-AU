@@ -51,6 +51,11 @@ public class SubmissionController {
 		return submissionRepository.getsumscore(id.getUid(),id.getCid());
 	}
 	
+	@PostMapping("/getsubmissioncount")
+	public Optional<Integer> getCountOfSubmissions(@RequestBody int aid) {
+		return submissionRepository.getsubmissioncount(aid);
+	}
+	
 	@Transactional
 	@PostMapping("/upload")
 	public void Upload(@RequestParam("imageFile") MultipartFile file, @RequestParam("uid") int uid, @RequestParam("assid") int aid, @RequestParam("cid") int cid, @RequestParam("score") String score) {
