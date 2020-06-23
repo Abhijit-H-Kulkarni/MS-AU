@@ -34,6 +34,7 @@ export class AppComponent {
     localStorage.setItem('loginStatus', 'false');
     localStorage.setItem('welcome','true');
     localStorage.setItem('isadmin','false');
+    localStorage.setItem('isTrainer','false');
     this.socioAuthServ.signOut();
    }
 
