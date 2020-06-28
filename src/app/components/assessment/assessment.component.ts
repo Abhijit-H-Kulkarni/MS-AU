@@ -87,7 +87,7 @@ export class AssessmentComponent implements OnInit {
     this.uid = localStorage.getItem("uid");
     this.tempcourses = null;
     this.courseService.getCourses().subscribe(data => {
-      if(this.isTrainer==false) {
+      if(this.isTrainer==false || this.isAdmin==true) {
       this.courses = data;
       this.tempcourses = data;
       let courseArray = data as course[];
