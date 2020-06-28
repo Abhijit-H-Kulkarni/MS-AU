@@ -85,7 +85,6 @@ export class AssessmentComponent implements OnInit {
 
   ngOnInit(): void {
     this.uid = localStorage.getItem("uid");
-    this.tempcourses = null;
     this.courseService.getCourses().subscribe(data => {
       if(this.isTrainer==false || this.isAdmin==true) {
       this.courses = data;
@@ -131,6 +130,7 @@ export class AssessmentComponent implements OnInit {
     }
     else {
       let courseArray = data as course[];
+      this.tempcourses = {};
       for(let acourse of courseArray) {
         this.trainerService.findTrainer({tid:acourse["tid"],tname:'',designation:'',specialities:'',email:''}).subscribe(trainersdata => { 
           this.logger.info("Find Trainer Event.");
