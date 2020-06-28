@@ -55,6 +55,8 @@ export class AssessmentComponent implements OnInit {
       this.isTrainer = true;
     else
       this.isTrainer = false;
+
+    console.log(this.isAdmin);
    }
 
 
@@ -87,6 +89,7 @@ export class AssessmentComponent implements OnInit {
     this.uid = localStorage.getItem("uid");
     this.tempcourses = null;
     this.courseService.getCourses().subscribe(data => {
+      console.log("Init "+this.isAdmin);
       if(this.isTrainer==false || this.isAdmin==true) {
       this.courses = data;
       this.tempcourses = data;
