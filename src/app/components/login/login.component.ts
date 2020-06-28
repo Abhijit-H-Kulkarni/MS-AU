@@ -57,6 +57,7 @@ export class LoginComponent implements OnInit {
           });
           localStorage.setItem('welcome','true');
           this.logger.info("Successful Login.");
+          location.href="/assessment";
         }
       }
     }, err => {
