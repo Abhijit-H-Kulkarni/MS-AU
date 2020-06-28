@@ -136,7 +136,7 @@ export class AssessmentComponent implements OnInit {
           this.logger.info("Find Trainer Event.");
           if(localStorage.getItem("email")==trainersdata["email"]) {
             this.trainersmap.set(acourse["tid"],{"tname":trainersdata["tname"],"designation":trainersdata["designation"]});
-            this.tempcourses.push(acourse);
+            this.tempcourses.set(acourse["cid"],acourse);
             this.courses.push(acourse);
           }
         },err=>{
